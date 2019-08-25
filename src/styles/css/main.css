@@ -1,0 +1,10 @@
+body h1 {
+  text-decoration: line-through; }
+
+body {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  padding: 1rem; }
+  body p {
+    color: green;
+    text-decoration: underline; }
