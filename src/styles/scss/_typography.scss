@@ -11,4 +11,10 @@ body {
         color: green;
         text-decoration: underline;
     }
+    .MuiButton-containedPrimary {
+        background-color: green;
+        &:hover {
+            background-color: saddlebrown;
+        }
+    }
 }

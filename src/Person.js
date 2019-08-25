@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 export default class Person extends Component {
-    
+
     render() {
         return (
-            <div>
-                {this.props.name}
-            </div>
-        )
+            <Button variant="contained" color="primary">
+                Hi
+            </Button>
+        );
     }
 }
