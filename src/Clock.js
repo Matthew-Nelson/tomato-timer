@@ -8,20 +8,23 @@ export default class Clock extends Component {
         this.state = {
             isRunning: false,
             secondsElapsed: 0,
-            clockLength: "pomodoro",
+            startSeconds: 10,
+            pomodoro: true
         };
     }
 
     componentDidMount() {
-        // this.setState({
-        //     secondsLeft: this.props.startSeconds,
-        // })
+
     }
 
-    changeClock = (newLength) => {
+    changeClock = (newLength, isPomordoro) => {
         this.updateClockState(false);
         this.resetClock();
-        this.setState({ clockLength: newLength });
+        this.setState({ 
+            startSeconds: newLength,
+            pomodoro: isPomordoro
+        });
+
     }
 
     updateClockState = (clockState) => {
@@ -49,8 +52,7 @@ export default class Clock extends Component {
     }
 
     resetClock = () => {
-        this.updateClockState(false);
-        clearInterval(this.timerID);
+        this.stopClock()
         this.setState({
             secondsElapsed: 0
         })
@@ -60,29 +62,25 @@ export default class Clock extends Component {
         this.setState({
             secondsElapsed: (this.state.secondsElapsed + 1)
         })
+        if (this.state.secondsElapsed === this.state.startSeconds) {
+            if (this.state.pomodoro === true) {
+                this.stopClock();
+                this.props.incrementTomatoCounter();
+            } else {
+                this.stopClock();
+            }
+        }
     }
 
     render() {
 
-        const SECONDSIN25MINS = 10;
-        const SECONDSIN10MINS = 6;
-        const SECONDSIN5MINS = 3;
-
-        var startSeconds = 0;
-        if (this.state.clockLength === "pomodoro") {
-        startSeconds = SECONDSIN25MINS;
-        } else if (this.state.clockLength === "long") {
-        startSeconds = SECONDSIN10MINS;
-        } else if (this.state.clockLength === "short") {
-        startSeconds = SECONDSIN5MINS;
-        }
-
         return (
             <div>
                 <ClockChanger changeClock={this.changeClock} />
-                <h1>{this.props.clockLength} timer</h1>
-                <h2>Start seconds: {startSeconds}</h2>
-                <h2>Seconds left: {startSeconds - this.state.secondsElapsed}</h2>
+                
+                <h1>{this.state.pomodoro === true ? 'Pomodoro' : 'Break'} timer</h1>
+                <h2>Start seconds: {this.state.startSeconds}</h2>
+                <h2>Seconds left: {this.state.startSeconds - this.state.secondsElapsed}</h2>
                 
 
                 <div>
@@ -90,6 +88,9 @@ export default class Clock extends Component {
                     <button onClick={this.stopClock.bind(this)}>Stop</button>
                     <button onClick={this.resetClock.bind(this)}>Reset</button>
                 </div>
+
+                <button onClick={this.props.incrementTomatoCounter}>INCREMENT COUNTER</button>
+
             </div>
         )
     }

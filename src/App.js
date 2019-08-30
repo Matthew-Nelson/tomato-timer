@@ -16,7 +16,9 @@ export default class App extends Component {
   }
 
   incrementTomatoCounter = () => {
-    console.log('increase tomatoes by 1');
+    this.setState({
+      tomatoes: this.state.tomatoes + 1
+    })
   }
 
   render() {
@@ -29,7 +31,7 @@ export default class App extends Component {
           <Clock incrementTomatoCounter={this.incrementTomatoCounter} />
           <TomatoCounter tomatoes={this.state.tomatoes} />
         </header>
-    </div>
+      </div>
     )
   }
 }
