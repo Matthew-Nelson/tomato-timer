@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Wrapper extends Component {
-
+export default class TomatoCounter extends Component {
     render() {
         return (
             <div>
-                We have our App wrapper here
+                We have {this.props.tomatoes} tomatoes
             </div>
         )
     }

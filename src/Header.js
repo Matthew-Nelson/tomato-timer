@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export default function Header(props) {
     return (
         <div>
-            {props.content}
+            <h1>My Tomato Timer</h1>
         </div>
     )
 }
