@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ClockChanger from './ClockChanger.js';
 
 export default class Clock extends Component {
 
@@ -7,7 +7,8 @@ export default class Clock extends Component {
         super(props);
         this.state = {
             isRunning: false,
-            secondsElapsed: 0
+            secondsElapsed: 0,
+            clockLength: "pomodoro",
         };
     }
 
@@ -17,11 +18,17 @@ export default class Clock extends Component {
         // })
     }
 
-    // static getDerivedStateFromProps(props, state) {
-    //     // console.log(props);
-    //     // console.log(state);
-    //     return { secondsLeft: (props.startSeconds) };
-    // }
+    changeClock = (newLength) => {
+        this.updateClockState(false);
+        this.resetClock();
+        this.setState({ clockLength: newLength });
+    }
+
+    updateClockState = (clockState) => {
+        this.setState({
+            isRunning: clockState
+        })
+    }
         
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -29,7 +36,7 @@ export default class Clock extends Component {
 
 
     startClock = () => {
-        this.props.updateClockState(true);
+        this.updateClockState(true);
         this.timerID = setInterval(
             () => this.tick(),
             1000
@@ -37,12 +44,12 @@ export default class Clock extends Component {
     }
 
     stopClock = () => {
-        this.props.updateClockState(false);
+        this.updateClockState(false);
         clearInterval(this.timerID);
     }
 
     resetClock = () => {
-        this.props.updateClockState(false);
+        this.updateClockState(false);
         clearInterval(this.timerID);
         this.setState({
             secondsElapsed: 0
@@ -56,14 +63,26 @@ export default class Clock extends Component {
     }
 
     render() {
-        
-        // this.resetClock()
+
+        const SECONDSIN25MINS = 10;
+        const SECONDSIN10MINS = 6;
+        const SECONDSIN5MINS = 3;
+
+        var startSeconds = 0;
+        if (this.state.clockLength === "pomodoro") {
+        startSeconds = SECONDSIN25MINS;
+        } else if (this.state.clockLength === "long") {
+        startSeconds = SECONDSIN10MINS;
+        } else if (this.state.clockLength === "short") {
+        startSeconds = SECONDSIN5MINS;
+        }
 
         return (
             <div>
+                <ClockChanger changeClock={this.changeClock} />
                 <h1>{this.props.clockLength} timer</h1>
-                <h2>Start seconds: {this.props.startSeconds}</h2>
-                <h2>Seconds left: {this.props.startSeconds - this.state.secondsElapsed}</h2>
+                <h2>Start seconds: {startSeconds}</h2>
+                <h2>Seconds left: {startSeconds - this.state.secondsElapsed}</h2>
                 
 
                 <div>
