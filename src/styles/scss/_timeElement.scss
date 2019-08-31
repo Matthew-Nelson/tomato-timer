@@ -1,0 +1,13 @@
+.time-element {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 1rem;
+    
+    display: block;
+    &.break {
+        border: 1px solid grey;
+    }
+    &.tomato {
+        border: 1px solid orange;
+    }
+}

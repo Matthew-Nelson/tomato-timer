@@ -15,7 +15,7 @@ export default class Clock extends Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount() { 
 
     }
 
@@ -65,18 +65,14 @@ export default class Clock extends Component {
             secondsElapsed: (this.state.secondsElapsed + 1)
         })
         if (this.state.secondsElapsed === this.state.startSeconds) {
-            if (this.state.pomodoro === true) {
-                this.stopClock();
-                this.props.incrementTomatoCounter();
-            } else {
-                this.stopClock();
-            }
+            this.stopClock();
+            this.props.finishTimer(this.state.pomodoro, this.state.startSeconds);
         }
     }
 
     skipToEnd = () => {
         this.setState({
-            secondsElapsed: (this.state.startSeconds - 5)
+            secondsElapsed: (this.state.startSeconds - 2)
         }, () => {
             if (!this.state.isRunning)
                 this.startClock()

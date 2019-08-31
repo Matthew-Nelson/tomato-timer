@@ -11,13 +11,32 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      tomatoes: 0,
+      tomatoes: 2,
+      timeElements: [
+        {
+          isTomato: true,
+          minutes: 25
+        },
+        {
+          isTomato: false,
+          minutes: 5
+        }
+      ]
     }
   }
 
-  incrementTomatoCounter = () => {
+  finishTimer = (countAsTomato, secondsCompleted) => {
+
+    var newTimeElement = {
+      isTomato: countAsTomato,
+      minutes: (secondsCompleted / 60)
+    }
+
+    console.log(newTimeElement);
+
     this.setState({
-      tomatoes: this.state.tomatoes + 1
+      tomatoes: this.state.tomatoes + 1,
+      timeElements: [...this.state.timeElements, newTimeElement]
     })
   }
 
@@ -28,8 +47,9 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <Header />
-          <Clock incrementTomatoCounter={this.incrementTomatoCounter} />
-          <TomatoCounter tomatoes={this.state.tomatoes} />
+          <Clock finishTimer={this.finishTimer} />
+          <hr/>
+          <TomatoCounter tomatoCount={this.state.tomatoes} timeElements={this.state.timeElements} />
         </header>
       </div>
     )
