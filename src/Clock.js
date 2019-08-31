@@ -5,10 +5,12 @@ export default class Clock extends Component {
 
     constructor(props) {
         super(props);
+        const SECONDSIN25MINS = 1500;
+
         this.state = {
             isRunning: false,
             secondsElapsed: 0,
-            startSeconds: 10,
+            startSeconds: SECONDSIN25MINS,
             pomodoro: true
         };
     }
@@ -72,6 +74,12 @@ export default class Clock extends Component {
         }
     }
 
+    skipToEnd = () => {
+        this.setState({
+            secondsElapsed: (this.state.startSeconds - 5)
+        })
+    }
+
     render() {
 
         return (
@@ -84,12 +92,14 @@ export default class Clock extends Component {
                 
 
                 <div>
-                    <button onClick={this.startClock.bind(this)}>Start</button>
-                    <button onClick={this.stopClock.bind(this)}>Stop</button>
-                    <button onClick={this.resetClock.bind(this)}>Reset</button>
+                    <button onClick={this.startClock}>Start</button>
+                    <button onClick={this.stopClock}>Stop</button>
+                    <button onClick={this.resetClock}>Reset</button>
                 </div>
 
-                <button onClick={this.props.incrementTomatoCounter}>INCREMENT COUNTER</button>
+                
+
+                <button onClick={this.skipToEnd}>Skip to end of Timer</button>
 
             </div>
         )
