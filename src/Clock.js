@@ -77,8 +77,32 @@ export default class Clock extends Component {
     skipToEnd = () => {
         this.setState({
             secondsElapsed: (this.state.startSeconds - 5)
+        }, () => {
+            if (!this.state.isRunning)
+                this.startClock()
         })
     }
+
+    formatSeconds = (origSec) => {
+        var hours   = Math.floor(origSec / 3600);
+        var minutes = Math.floor((origSec - (hours * 3600)) / 60);
+        var seconds = origSec - (hours * 3600) - (minutes * 60);
+
+        if (hours < 10) {
+            hours = `0${hours} : `
+            if (hours === '00 : ') {
+                hours = '';
+            }
+        }
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        if (seconds < 10) {
+            seconds = `0${seconds}`;
+        }
+        return `${hours}${minutes} : ${seconds}`;
+    }
+    
 
     render() {
 
@@ -86,23 +110,25 @@ export default class Clock extends Component {
             <div>
                 <ClockChanger changeClock={this.changeClock} />
                 
-                <h1>{this.state.pomodoro === true ? 'Pomodoro' : 'Break'} timer</h1>
-                <h2>Start seconds: {this.state.startSeconds}</h2>
-                <h2>Seconds left: {this.state.startSeconds - this.state.secondsElapsed}</h2>
+                <h2>{this.state.pomodoro === true ? 'Pomodoro' : 'Break'} timer</h2>
                 
-
+                <h2 style={clockStyle}>{this.formatSeconds(this.state.startSeconds - this.state.secondsElapsed)}</h2>
+                
                 <div>
                     <button onClick={this.startClock}>Start</button>
                     <button onClick={this.stopClock}>Stop</button>
                     <button onClick={this.resetClock}>Reset</button>
                 </div>
 
-                
-
                 <button onClick={this.skipToEnd}>Skip to end of Timer</button>
 
             </div>
         )
     }
+}
 
+const clockStyle = {
+    display: 'inline-block',
+    padding: '1rem',
+    border: '1px solid red'
 }
