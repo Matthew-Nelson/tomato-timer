@@ -1,13 +1,37 @@
-.time-element {
-    height: 100px;
-    width: 100px;
-    margin-bottom: 1rem;
-    
-    display: block;
-    &.break {
-        border: 1px solid grey;
-    }
-    &.tomato {
-        border: 1px solid orange;
+.time-elements-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    .time-element {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2%;
+        position: relative;
+        &.break {
+            border: 1px solid grey;
+        }
+        &.tomato {
+            border: 1px solid orange;
+            border-radius: 50%;
+        }
+        .rm-button {
+            display: none;
+            position: absolute;
+            top: 5px;
+            // right: 3px;
+            cursor: pointer;
+            // color: white;
+            // text-decoration: none;
+        }
+        &:hover {
+            .rm-button {
+                display: block;
+            }
+        }
     }
 }
+

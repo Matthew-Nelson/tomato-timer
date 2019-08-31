@@ -41,6 +41,11 @@ export default class Clock extends Component {
 
 
     startClock = () => {
+        
+        if (this.state.startSeconds === this.state.secondsElapsed) {
+            this.resetClock();
+        }
+
         this.updateClockState(true);
         this.timerID = setInterval(
             () => this.tick(),
