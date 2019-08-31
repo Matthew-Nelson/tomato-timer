@@ -69,6 +69,7 @@ export default class Clock extends Component {
         this.setState({
             secondsElapsed: (this.state.secondsElapsed + 1)
         })
+        console.log(document.title)
         if (this.state.secondsElapsed === this.state.startSeconds) {
             this.stopClock();
             this.props.finishTimer(this.state.pomodoro, this.state.startSeconds);
