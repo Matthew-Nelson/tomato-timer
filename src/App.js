@@ -3,28 +3,20 @@ import Header from './Header.js';
 import Clock from './Clock.js';
 import TomatoCounter from './TomatoCounter.js';
 import uuid from 'uuid';
-import mp3_file from './assets/ship-bell.mp3'
+import mp3_file from './assets/ship-bell.mp3';
+import { withCookies } from 'react-cookie';
 
 import './styles/css/main.css';
 
 
-export default class App extends Component {
+class App extends Component {
 
   constructor(props){
     super(props);
+    const { cookies } = props;
+
     this.state = {
-      timeElements: [
-        {
-          isTomato: true,
-          minutes: 25,
-          id: uuid()
-        },
-        {
-          isTomato: false,
-          minutes: 5,
-          id: uuid()
-        }
-      ]
+      timeElements: cookies.get('timeElements') || []
     }
   }
 
@@ -37,12 +29,14 @@ export default class App extends Component {
     }
 
     this.setState({
-      tomatoes: this.state.tomatoes + 1,
       timeElements: [...this.state.timeElements, newTimeElement]
     })
 
     var audio = document.getElementById("alarm-audio");
     audio.play();
+
+
+    this.setElementsCookie();
 
   }
 
@@ -54,20 +48,43 @@ export default class App extends Component {
 
     this.setState({
       timeElements: newArray
+    }, () => {
+      this.setElementsCookie();
+    })  
+  }
+  
+  setElementsCookie = () => {
+    const { cookies } = this.props;
+    var currentDate = new Date();
+    var year = currentDate.getFullYear()
+    var month = currentDate.getMonth()
+    var day = currentDate.getDate();
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes();
+    var expDate = new Date(year, month + 1, day, hours, minutes)
+    cookies.set('timeElements', this.state.timeElements, { path: '/', expires: expDate});
+  }
+
+  clearElementsCookie = () => {
+    this.setState({
+      timeElements: []
+    }, () => {
+      this.setElementsCookie();
     })
-    
   }
 
   render() {
+    const name = this.state.name;
 
     return (
 
       <div className="App">
         <header className="App-header">
+          <div>{name}</div>
           <Header />
           <Clock finishTimer={this.finishTimer} />
           <hr/>
-          <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement}/>
+          <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie}/>
 
           <audio id="alarm-audio" src={mp3_file} type="audio/mpeg"/>
 
@@ -76,3 +93,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default withCookies(App);

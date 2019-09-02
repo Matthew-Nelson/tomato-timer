@@ -25,6 +25,7 @@ export default class TomatoCounter extends Component {
 
             <div>
                 <p>We have {tomatoCount} tomatoes</p>
+                <button onClick={this.props.clearElementsCookie}>Clear Log</button>
                 <div className="time-elements-wrapper">
                     {elementsArray}
                 </div>
