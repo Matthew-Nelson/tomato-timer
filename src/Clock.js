@@ -35,15 +35,17 @@ export default class Clock extends Component {
 
     startClock = () => {
         
-        if (this.props.startSeconds === this.state.secondsElapsed) {
-            this.resetClock();
+        if (!this.state.isRunning) {
+            if (this.props.startSeconds === this.state.secondsElapsed) {
+                this.resetClock();
+            }
+            this.updateClockState(true);
+            this.timerID = setInterval(
+                () => this.tick(),
+                1000
+            );
         }
 
-        this.updateClockState(true);
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
-        );
     }
 
     stopClock = () => {
@@ -78,7 +80,7 @@ export default class Clock extends Component {
         if (showTimeInTitle === false) {
             document.title = title;
         } else {
-            var fomattedTime = this.formatSeconds(this.props.startSeconds - this.props.secondsElapsed);
+            var fomattedTime = this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed);
             document.title = `${title} (${fomattedTime})`;
         }
     }
