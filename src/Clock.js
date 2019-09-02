@@ -59,20 +59,34 @@ export default class Clock extends Component {
     }
 
     resetClock = () => {
-        this.stopClock()
+        this.stopClock();
+        this.changeTitle(false);
         this.setState({
             secondsElapsed: 0
-        })
+        });
     }
 
     tick = () => {
         this.setState({
             secondsElapsed: (this.state.secondsElapsed + 1)
         })
-        console.log(document.title)
+
+        this.changeTitle(true);
+
         if (this.state.secondsElapsed === this.state.startSeconds) {
             this.stopClock();
             this.props.finishTimer(this.state.pomodoro, this.state.startSeconds);
+        }
+    }
+
+    changeTitle = (showTimeInTitle) => {
+        var title = 'Pomodoro';
+
+        if (showTimeInTitle === false) {
+            document.title = title;
+        } else {
+            var fomattedTime = this.formatSeconds(this.state.startSeconds - this.state.secondsElapsed);
+            document.title = `${title} (${fomattedTime})`;
         }
     }
 
@@ -91,8 +105,8 @@ export default class Clock extends Component {
         var seconds = origSec - (hours * 3600) - (minutes * 60);
 
         if (hours < 10) {
-            hours = `0${hours} : `
-            if (hours === '00 : ') {
+            hours = `0${hours}:`
+            if (hours === '00:') {
                 hours = '';
             }
         }
@@ -102,7 +116,7 @@ export default class Clock extends Component {
         if (seconds < 10) {
             seconds = `0${seconds}`;
         }
-        return `${hours}${minutes} : ${seconds}`;
+        return `${hours}${minutes}:${seconds}`;
     }
     
 
