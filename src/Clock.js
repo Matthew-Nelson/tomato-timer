@@ -5,27 +5,20 @@ export default class Clock extends Component {
 
     constructor(props) {
         super(props);
-        const SECONDSIN25MINS = 1500;
 
         this.state = {
             isRunning: false,
-            secondsElapsed: 0,
-            startSeconds: SECONDSIN25MINS,
-            pomodoro: true
+            secondsElapsed: 0
         };
     }
 
-    componentDidMount() { 
+    changeClock = (newLength, newTimerType) => {
 
-    }
-
-    changeClock = (newLength, isPomordoro) => {
+        this.props.passVarsUp(newLength, newTimerType);
+        
         this.updateClockState(false);
+        
         this.resetClock();
-        this.setState({ 
-            startSeconds: newLength,
-            pomodoro: isPomordoro
-        });
 
     }
 
@@ -42,7 +35,7 @@ export default class Clock extends Component {
 
     startClock = () => {
         
-        if (this.state.startSeconds === this.state.secondsElapsed) {
+        if (this.props.startSeconds === this.state.secondsElapsed) {
             this.resetClock();
         }
 
@@ -73,9 +66,9 @@ export default class Clock extends Component {
 
         this.changeTitle(true);
 
-        if (this.state.secondsElapsed === this.state.startSeconds) {
+        if (this.state.secondsElapsed === this.props.startSeconds) {
             this.stopClock();
-            this.props.finishTimer(this.state.pomodoro, this.state.startSeconds);
+            this.props.finishTimer(this.props.timerType, this.props.startSeconds);
         }
     }
 
@@ -85,14 +78,14 @@ export default class Clock extends Component {
         if (showTimeInTitle === false) {
             document.title = title;
         } else {
-            var fomattedTime = this.formatSeconds(this.state.startSeconds - this.state.secondsElapsed);
+            var fomattedTime = this.formatSeconds(this.props.startSeconds - this.props.secondsElapsed);
             document.title = `${title} (${fomattedTime})`;
         }
     }
 
     skipToEnd = () => {
         this.setState({
-            secondsElapsed: (this.state.startSeconds - 2)
+            secondsElapsed: (this.props.startSeconds - 2)
         }, () => {
             if (!this.state.isRunning)
                 this.startClock()
@@ -122,13 +115,14 @@ export default class Clock extends Component {
 
     render() {
 
+
         return (
             <div>
-                <ClockChanger changeClock={this.changeClock} />
+                <ClockChanger changeClock={this.changeClock} pomodoroTimeLengthSeconds={this.props.pomodoroTimeLengthSeconds} shortBreakTimeLengthSeconds={this.props.shortBreakTimeLengthSeconds} longBreakTimeLengthSeconds={this.props.longBreakTimeLengthSeconds}/>
                 
-                <h2>{this.state.pomodoro === true ? 'Pomodoro' : 'Break'} timer</h2>
+                <h2>{this.props.timerType === 'pomodoro' ? 'Pomodoro' : 'Break'} timer</h2>
                 
-                <h2 style={clockStyle}>{this.formatSeconds(this.state.startSeconds - this.state.secondsElapsed)}</h2>
+                <h2 style={clockStyle}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 
                 <div>
                     <button onClick={this.startClock}>Start</button>
