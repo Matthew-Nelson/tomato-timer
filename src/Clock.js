@@ -117,6 +117,28 @@ export default class Clock extends Component {
 
     render() {
 
+        // console.log(this.state.isRunning);
+        // console.log(this.props.timerType);
+
+        // var message = "";
+        // if (this.state.isRunning === false && this.props.timerType === 'pomodoro') {
+        //     // clock is off and we are waiting to start a pomodoro
+        //     message = "Start the clock and get to work!";
+        //     console.log(message);
+        // } else if (this.state.isRunning === true && this.props.timerType === 'pomodoro') {
+        //     // clock is on and we are on a pomodoro
+        //     message = "You're on the clock, keep focosed on the task at hand!"
+        //     console.log(message);
+        // } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro') {
+        //     // clock is off and we are waiting to start a break
+        //     message = "Good job! You made it to the break. Start the clock and take your well earned time to rest."
+        //     console.log(message);
+        // } else if (this.state.isRunning === true && this.props.timerType !== 'pomodoro') {
+        //     // clock is on and we are currently on a break
+        //     message = "You're on your break. Get up, stretch, grab a snack or water if needed and relax!"
+        //     console.log(message);
+        // }
+
 
         return (
             <div>
@@ -124,6 +146,8 @@ export default class Clock extends Component {
                 
                 <h2>{this.props.timerType === 'pomodoro' ? 'Pomodoro' : 'Break'} timer</h2>
                 
+                <p>{message}</p>
+
                 <h2 style={clockStyle}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 
                 <div>

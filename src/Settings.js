@@ -38,12 +38,14 @@ export default class Settings extends Component {
             ...this.props.defaultSettings
         }, () => {
             this.props.clearSettingsCookie();
+            this.props.restoreCurrentClockCookie();
         })
     }
 
     render() {
         return (
             <div>
+                <h2>SETTINGS</h2>
                 <form onSubmit={this.onSubmit} id="settings" >
                     <p><strong>Custom Timer Times</strong></p>
                     <div>

@@ -33,14 +33,18 @@ class App extends Component {
       logDescendingList: true
     }
 
+    this.defaultClock = {
+      startSeconds: 1500,
+      timerType: 'pomodoro'
+    }
+
     this.state = {
       timeElements: cookies.get('timeElements') || [],
       settings: cookies.get('settings') || {
         ...this.defaultSettings
       },
       clock: cookies.get('currentClockState') || {
-        startSeconds: 1500,
-        timerType: 'pomodoro'
+        ...this.defaultClock
       }
     }
   }
@@ -146,6 +150,16 @@ class App extends Component {
     })
   }
 
+  restoreCurrentClockCookie = () => {
+    this.setState({
+      clock: {
+        ...this.defaultClock
+      }
+    }, () => {
+      this.setCurrentClockCookie();
+    })
+  }
+
   changeClockFromVars = (newLength, timerType) => {
     this.setState({
       clock: {
@@ -168,7 +182,7 @@ class App extends Component {
           <hr/>
           <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie}/>
           <hr/>
-          <Settings defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie}/>
+          <Settings defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
           <audio id="alarm-audio" src={mp3_file} type="audio/mpeg"/>
         </header>
       </div>

@@ -4,9 +4,12 @@ export default class TomatoCounter extends Component {
     render() {
 
         var tomatoCount = 0;
+        var breakCount = 0;
         for (let index = 0; index < this.props.timeElements.length; index++) {
             if (this.props.timeElements[index].isTomato) {
                 tomatoCount++
+            } else {
+                breakCount++
             }
         }
 
@@ -24,7 +27,9 @@ export default class TomatoCounter extends Component {
         return (
 
             <div>
-                <p>We have {tomatoCount} tomatoes</p>
+                <h2>COMPLETED SEGMENTS</h2>
+                <p>We have {tomatoCount} tomatoes completed</p>
+                <p>We have taken {breakCount} beaks</p>
                 <button onClick={this.props.clearElementsCookie}>Clear Log</button>
                 <div className="time-elements-wrapper">
                     {elementsArray}
