@@ -42,6 +42,8 @@ export default class Settings extends Component {
         })
     }
 
+
+
     render() {
 
         var alarmOptions = this.props.alarmSounds.map((option) => {
@@ -68,6 +70,12 @@ export default class Settings extends Component {
                     </select>
                     <p>---</p>
                     <p><strong>Adjust Volume</strong></p>
+                    <select name="alarmVolumePercent" onChange={this.onChange} value={this.state.alarmVolumePercent}>
+                        <option value="100">100%</option>
+                        <option value="75">75%</option>
+                        <option value="50">50%</option>
+                        <option value="25">25%</option>
+                    </select>
                     <p>---</p>
                     <p><strong>Browser Notification</strong></p>
                     <p>---</p>

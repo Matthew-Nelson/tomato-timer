@@ -45,7 +45,7 @@ class App extends Component {
       shortBreakTimeLengthMinutes: 5,
 
       alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
-      alarmVolume: 1.0,
+      alarmVolumePercent: 25,
 
       browserNotification: true,
 
@@ -196,10 +196,25 @@ class App extends Component {
     })
   }
 
+  componentDidMount = () => {
+
+    this.setState({
+      clock: {
+        startSeconds: this.state.settings.pomodoroTimeLengthMinutes*60,
+        timerType: 'pomodoro'
+      }
+    }, () => {
+      this.setCurrentClockCookie();
+    })
+
+    var audio = document.getElementById("alarm-audio");
+    audio.volume = this.state.settings.alarmVolumePercent/100;
+
+  }
+
   render() {
-
+    
     return (
-
       <div className="App">
         <header className="App-header">
           <Header />
@@ -208,7 +223,7 @@ class App extends Component {
           <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie}/>
           <hr/>
           <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
-          <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg"/>
+          <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />
         </header>
       </div>
     )
