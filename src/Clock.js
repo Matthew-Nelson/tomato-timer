@@ -146,7 +146,7 @@ export default class Clock extends Component {
                 
                 <h2>{this.props.timerType === 'pomodoro' ? 'Pomodoro' : 'Break'} timer</h2>
                 
-                <p>{message}</p>
+                {/* <p>{message}</p> */}
 
                 <h2 style={clockStyle}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Settings extends Component {
 
@@ -43,6 +43,11 @@ export default class Settings extends Component {
     }
 
     render() {
+
+        var alarmOptions = this.props.alarmSounds.map((option) => {
+            return <option key={option.id} value={option.url}>{option.name}</option>
+        })
+
         return (
             <div>
                 <h2>SETTINGS</h2>
@@ -58,6 +63,9 @@ export default class Settings extends Component {
                     </div>
                     <p>---</p>
                     <p><strong>Sound Picker</strong></p>
+                    <select name="alarmSoundUrl" onChange={this.onChange} value={this.state.alarmSoundUrl}>
+                        {alarmOptions}
+                    </select>
                     <p>---</p>
                     <p><strong>Adjust Volume</strong></p>
                     <p>---</p>

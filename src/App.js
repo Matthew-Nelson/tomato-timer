@@ -4,7 +4,7 @@ import Clock from './Clock.js';
 import TomatoCounter from './TomatoCounter.js';
 import Settings from './Settings.js';
 import uuid from 'uuid';
-import mp3_file from './assets/ship-bell.mp3';
+import { analogWatch, schoolBell, shipBell, templeBell } from './assets/alarm-sounds.js';
 import { withCookies } from 'react-cookie';
 
 import './styles/css/main.css';
@@ -16,12 +16,35 @@ class App extends Component {
     super(props);
     const { cookies } = props;
 
+    this.alarmSounds = [
+      {
+        name: 'School Bell',
+        url: schoolBell,
+        id: uuid()
+      },
+      {
+        name: 'Ship Bell',
+        url: shipBell,
+        id: uuid()
+      },
+      {
+        name: 'Temple Bell',
+        url: templeBell,
+        id: uuid()
+      },
+      {
+        name: 'Analog Watch',
+        url: analogWatch,
+        id: uuid()
+      }
+    ]
+
     this.defaultSettings = {
       pomodoroTimeLengthMinutes: 25,
       longBreakTimeLengthMinutes: 10,
       shortBreakTimeLengthMinutes: 5,
 
-      alarmSound: 'ship-bell',
+      alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
       alarmVolume: 1.0,
 
       browserNotification: true,
@@ -39,7 +62,9 @@ class App extends Component {
     }
 
     this.state = {
-      timeElements: cookies.get('timeElements') || [],
+      timeElements: cookies.get('timeElements') || [
+        // no default time Elements. The user hasnt completed any yet.
+      ],
       settings: cookies.get('settings') || {
         ...this.defaultSettings
       },
@@ -182,8 +207,8 @@ class App extends Component {
           <hr/>
           <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie}/>
           <hr/>
-          <Settings defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
-          <audio id="alarm-audio" src={mp3_file} type="audio/mpeg"/>
+          <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
+          <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg"/>
         </header>
       </div>
     )
