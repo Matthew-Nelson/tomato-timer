@@ -16,9 +16,11 @@ export default class TomatoCounter extends Component {
         var elementsArray = this.props.timeElements.map((element) => {
             return (
                 <div key={element.id} className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
-                    <button onClick={this.props.deleteElement.bind(this, element.id)} href="/" className="rm-button">x</button>
+                    <button onClick={this.props.deleteElement.bind(this, element.id)} className="rm-button">x</button>
                     <div>
-                        <p>{element.minutes}</p>
+                        <p style={{textAlign: 'center'}}>{element.minutes}<br/>
+                        minutes
+                        </p>
                     </div>
                 </div>
             )
@@ -27,13 +29,13 @@ export default class TomatoCounter extends Component {
         return (
 
             <div>
-                <h2>COMPLETED SEGMENTS</h2>
-                <p>We have {tomatoCount} tomatoes completed</p>
-                <p>We have taken {breakCount} beaks</p>
-                <button onClick={this.props.clearElementsCookie}>Clear Log</button>
+                <h2>Completed Time Segments</h2>
+                <p>This section acts as a log of the pomodoros and break that you have completed.</p>
+                <p>So far, you have {tomatoCount} tomatoes completed and have taken {breakCount} beaks.</p>
                 <div className="time-elements-wrapper">
                     {elementsArray}
                 </div>
+                <button onClick={this.props.clearElementsCookie}>Clear Log</button>
             </div>
         )
     }

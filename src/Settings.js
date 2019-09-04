@@ -81,7 +81,7 @@ export default class Settings extends Component {
                     <p>---</p>
                     <p><strong>Auto Start Pomodoros and Breaks</strong></p>
                     <p>---</p>
-                    <p><strong>Log View Pomodoros Only</strong></p>
+                    <p><strong>Pomodoros Log View Toggle</strong></p>
                     <button type="submit" value="submit">Save Settings</button>
                     <p>---</p>
                 </form>

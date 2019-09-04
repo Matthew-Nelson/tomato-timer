@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.9.0",
     "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
     "uuid": "^3.3.3"
   },
+  "homepage": "https://matthew-nelson.github.io/tomato-timer",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass": "node-sass -w ./src/styles/scss/ -o ./src/styles/css/;"
+    "sass": "node-sass -w ./src/styles/scss/ -o ./src/styles/css/;",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

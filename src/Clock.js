@@ -12,6 +12,26 @@ export default class Clock extends Component {
         };
     }
 
+    displayMessage = () => {
+        
+        var message = "";
+        if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {
+            message = "Start the clock and get to work!";
+        } else if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds === this.state.secondsElapsed) {
+            message = "Good job! You made it to the break. Select whether you are going to take a short or long break."
+        } else if (this.state.isRunning === true && this.props.timerType === 'pomodoro') {
+            message = "You're on the clock, keep focused on the task at hand!"
+        } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {
+            message = "Start the clock and take your well earned break!"
+        } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro' && this.props.startSeconds === this.state.secondsElapsed) {
+            message = "Select whether you are headed back to a 'pomodoro' or if you want to take a longer break."
+        } else if (this.state.isRunning === true && this.props.timerType !== 'pomodoro') {
+            message = "You're on your break. Get up, stretch, grab a snack or water if needed and relax!"
+        }
+
+        return <p>{message}</p>
+    }
+
     changeClock = (newLength, newTimerType) => {
 
         this.props.passVarsUp(newLength, newTimerType);
@@ -87,7 +107,7 @@ export default class Clock extends Component {
 
     skipToEnd = () => {
         this.setState({
-            secondsElapsed: (this.props.startSeconds - 2)
+            secondsElapsed: (this.props.startSeconds - 4)
         }, () => {
             if (!this.state.isRunning)
                 this.startClock()
@@ -117,36 +137,13 @@ export default class Clock extends Component {
 
     render() {
 
-        // console.log(this.state.isRunning);
-        // console.log(this.props.timerType);
-
-        // var message = "";
-        // if (this.state.isRunning === false && this.props.timerType === 'pomodoro') {
-        //     // clock is off and we are waiting to start a pomodoro
-        //     message = "Start the clock and get to work!";
-        //     console.log(message);
-        // } else if (this.state.isRunning === true && this.props.timerType === 'pomodoro') {
-        //     // clock is on and we are on a pomodoro
-        //     message = "You're on the clock, keep focosed on the task at hand!"
-        //     console.log(message);
-        // } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro') {
-        //     // clock is off and we are waiting to start a break
-        //     message = "Good job! You made it to the break. Start the clock and take your well earned time to rest."
-        //     console.log(message);
-        // } else if (this.state.isRunning === true && this.props.timerType !== 'pomodoro') {
-        //     // clock is on and we are currently on a break
-        //     message = "You're on your break. Get up, stretch, grab a snack or water if needed and relax!"
-        //     console.log(message);
-        // }
-
-
         return (
             <div>
+                {this.displayMessage()}
+                
                 <ClockChanger changeClock={this.changeClock} pomodoroTimeLengthSeconds={this.props.pomodoroTimeLengthSeconds} shortBreakTimeLengthSeconds={this.props.shortBreakTimeLengthSeconds} longBreakTimeLengthSeconds={this.props.longBreakTimeLengthSeconds}/>
                 
-                <h2>{this.props.timerType === 'pomodoro' ? 'Pomodoro' : 'Break'} timer</h2>
                 
-                {/* <p>{message}</p> */}
 
                 <h2 style={clockStyle}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 
@@ -156,7 +153,11 @@ export default class Clock extends Component {
                     <button onClick={this.resetClock}>Reset</button>
                 </div>
 
-                <button onClick={this.skipToEnd}>Skip to end of Timer</button>
+                <div style={demonstrationStyle}>
+                    <p style={{marginTop: 0}}>For demonstration purposes, feel free to skip to the end of the timer:</p>
+                    <button onClick={this.skipToEnd}>Skip to end of Timer</button>
+                </div>
+                
 
             </div>
         )
@@ -167,4 +168,10 @@ const clockStyle = {
     display: 'inline-block',
     padding: '1rem',
     border: '1px solid red'
+}
+
+const demonstrationStyle = {
+    border: '1px dotted grey',
+    padding: '1rem',
+    margin: '1rem 0'
 }
