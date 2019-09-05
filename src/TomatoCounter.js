@@ -1,6 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import CommentSection from './CommentSection.js';
 
 export default class TomatoCounter extends Component {
+
+    editLogComment = (id, comment) => {
+        this.props.editLogComment(id, comment);
+    }
+
     render() {
 
         var tomatoCount = 0;
@@ -14,8 +20,6 @@ export default class TomatoCounter extends Component {
         }
 
         var elementsArray = this.props.timeElements.map((element) => {
-
-            
 
             return (
                 <div className="row" key={element.id}>
@@ -35,9 +39,7 @@ export default class TomatoCounter extends Component {
                         <p>Date Completed: {element.dateCompleted}</p>
                     </div>
                     <div>
-                        
-                        <textarea key={element.id} placeholder="enter your comments"/>
-                        <button onClick={this.props.submitComment}>Submit</button>
+                        <CommentSection comment={element.comment} editLogComment={this.editLogComment.bind(this, element.id)}/>
                     </div>
                 </div>
             )

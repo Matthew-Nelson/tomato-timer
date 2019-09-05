@@ -117,7 +117,8 @@ class App extends Component {
       isTomato: (timerType === 'pomodoro'),
       minutes: (secondsCompleted / 60),
       id: uuid(),
-      comments: "",
+      comment: "Dummy comments are here",
+      editingComment: false,
       timeStarted: formattedTimeStarted,
       timeCompleted: formattedTimeCompleted,
       dateCompleted: formattedDateCompleted
@@ -243,6 +244,10 @@ class App extends Component {
     })
   }
 
+  editLogComment = (id) => {
+    console.log(id);
+  }
+
   componentDidMount = () => {
 
     this.setState({
@@ -267,7 +272,7 @@ class App extends Component {
           <Header />
           <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60}/>
           <hr/>
-          <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie}/>
+          <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie} editLogComment={this.editLogComment}/>
           <hr/>
           <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
           <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />
