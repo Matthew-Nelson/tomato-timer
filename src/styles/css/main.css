@@ -6,28 +6,22 @@ body {
   border: 1px solid white;
   margin: 2rem auto 0; }
 
-.time-elements-wrapper {
+.time-elements-wrapper .row {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; }
-  .time-elements-wrapper .time-element {
-    height: 100px;
-    width: 100px;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 2%;
-    position: relative; }
-    .time-elements-wrapper .time-element.break {
-      border: 1px solid grey; }
-    .time-elements-wrapper .time-element.tomato {
-      border: 1px solid orange;
-      border-radius: 50%; }
-    .time-elements-wrapper .time-element .rm-button {
-      display: none;
-      position: absolute;
-      top: 5px;
-      cursor: pointer; }
-    .time-elements-wrapper .time-element:hover .rm-button {
-      display: block; }
+  justify-content: flex-start;
+  border: 1px solid green; }
+
+.time-elements-wrapper .time-element {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+  position: relative; }
+  .time-elements-wrapper .time-element.break {
+    border: 1px solid grey; }
+  .time-elements-wrapper .time-element.tomato {
+    border: 1px solid orange;
+    border-radius: 50%; }

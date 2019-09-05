@@ -74,13 +74,60 @@ class App extends Component {
     }
   }
 
-  finishTimer = (timerType, secondsCompleted) => {
+  createTimeElement = (timerType, secondsCompleted, timeStarted) => {
+    // formatting time started
+    var minutesStrt = timeStarted.getMinutes();
+    var hoursStrt = timeStarted.getHours();
+
+    var amOrPmStrt = "";
+    if (hoursStrt > 12) {
+      hoursStrt = hoursStrt-12;
+      amOrPmStrt = "PM";
+    } else if (hoursStrt < 12) {
+      amOrPmStrt = "AM";
+    } else if (hoursStrt === 12 ) {
+      amOrPmStrt = "PM";
+    }
+
+    var formattedTimeStarted = `${hoursStrt}:${minutesStrt} ${amOrPmStrt}`;
+
+    // formatting time and date completed
+    var dateFin = new Date();
+    var minutesFin = dateFin.getMinutes();
+    var hoursFin = dateFin.getHours();
+    var monthFin = dateFin.getUTCMonth() + 1;
+    var dayFin = dateFin.getUTCDate();
+    var yearFin = dateFin.getUTCFullYear();
+
+    var amOrPmFin = "";
+    if (hoursFin > 12) {
+      hoursFin = hoursFin-12;
+      amOrPmFin = "PM";
+    } else if (hoursFin < 12) {
+      amOrPmFin = "AM";
+    } else if (hoursFin === 12 ) {
+      amOrPmFin = "PM";
+    }
+
+    var formattedDateCompleted = `${monthFin}/${dayFin}/${yearFin}`;
+    var formattedTimeCompleted = `${hoursFin}:${minutesFin} ${amOrPmFin}`;
+
 
     var newTimeElement = {
       isTomato: (timerType === 'pomodoro'),
       minutes: (secondsCompleted / 60),
-      id: uuid()
+      id: uuid(),
+      comments: "",
+      timeStarted: formattedTimeStarted,
+      timeCompleted: formattedTimeCompleted,
+      dateCompleted: formattedDateCompleted
     }
+    return newTimeElement;
+  }
+
+  finishTimer = (timerType, secondsCompleted, startedWhen) => {
+
+    var newTimeElement = this.createTimeElement(timerType, secondsCompleted, startedWhen);
 
     this.setState({
       timeElements: [...this.state.timeElements, newTimeElement]

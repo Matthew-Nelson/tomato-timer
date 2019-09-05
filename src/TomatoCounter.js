@@ -14,13 +14,30 @@ export default class TomatoCounter extends Component {
         }
 
         var elementsArray = this.props.timeElements.map((element) => {
+
+            
+
             return (
-                <div key={element.id} className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
-                    <button onClick={this.props.deleteElement.bind(this, element.id)} className="rm-button">x</button>
+                <div className="row" key={element.id}>
                     <div>
-                        <p style={{textAlign: 'center'}}>{element.minutes}<br/>
-                        minutes
-                        </p>
+                        <button onClick={this.props.deleteElement.bind(this, element.id)} className="rm-button">x</button>
+                    </div>
+                    <div className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
+                        <div>
+                            <p style={{textAlign: 'center'}}>{element.minutes}<br/>
+                            minutes
+                            </p>
+                        </div>
+                    </div>
+                    <div className="log-info">
+                        <p>Time Started: {element.timeStarted}</p>
+                        <p>Time Completed: {element.timeStarted}</p>
+                        <p>Date Completed: {element.dateCompleted}</p>
+                    </div>
+                    <div>
+                        
+                        <textarea key={element.id} placeholder="enter your comments"/>
+                        <button onClick={this.props.submitComment}>Submit</button>
                     </div>
                 </div>
             )

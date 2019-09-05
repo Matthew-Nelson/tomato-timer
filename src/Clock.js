@@ -8,7 +8,8 @@ export default class Clock extends Component {
 
         this.state = {
             isRunning: false,
-            secondsElapsed: 0
+            secondsElapsed: 0,
+            timeStarted: {}
         };
     }
 
@@ -56,9 +57,17 @@ export default class Clock extends Component {
     startClock = () => {
         
         if (!this.state.isRunning) {
+            
             if (this.props.startSeconds === this.state.secondsElapsed) {
                 this.resetClock();
             }
+
+            if (this.state.secondsElapsed === 0 || this.state.secondsElapsed - this.props.startSeconds === 0) {
+                this.setState({
+                    timeStarted: new Date()
+                })
+            }
+            
             this.updateClockState(true);
             this.timerID = setInterval(
                 () => this.tick(),
@@ -77,7 +86,8 @@ export default class Clock extends Component {
         this.stopClock();
         this.changeTitle(false);
         this.setState({
-            secondsElapsed: 0
+            secondsElapsed: 0,
+            timeStarted: {}
         });
     }
 
@@ -90,7 +100,7 @@ export default class Clock extends Component {
 
         if (this.state.secondsElapsed === this.props.startSeconds) {
             this.stopClock();
-            this.props.finishTimer(this.props.timerType, this.props.startSeconds);
+            this.props.finishTimer(this.props.timerType, this.props.startSeconds, this.state.timeStarted);
         }
     }
 
@@ -107,7 +117,7 @@ export default class Clock extends Component {
 
     skipToEnd = () => {
         this.setState({
-            secondsElapsed: (this.props.startSeconds - 4)
+            secondsElapsed: (this.props.startSeconds - 2)
         }, () => {
             if (!this.state.isRunning)
                 this.startClock()
