@@ -34,13 +34,9 @@ export default class Clock extends Component {
     }
 
     changeClock = (newLength, newTimerType) => {
-
         this.props.passVarsUp(newLength, newTimerType);
-        
         this.updateClockState(false);
-        
         this.resetClock();
-
     }
 
     updateClockState = (clockState) => {
@@ -54,7 +50,7 @@ export default class Clock extends Component {
     }
 
 
-    startClock = () => {
+    startClock = (didSkip) => {
         
         if (!this.state.isRunning) {
             
@@ -62,7 +58,7 @@ export default class Clock extends Component {
                 this.resetClock();
             }
 
-            if (this.state.secondsElapsed === 0 || this.state.secondsElapsed - this.props.startSeconds === 0) {
+            if (this.state.secondsElapsed === 0 || this.state.secondsElapsed - this.props.startSeconds === 0 || didSkip) {
                 this.setState({
                     timeStarted: new Date()
                 })
@@ -117,10 +113,10 @@ export default class Clock extends Component {
 
     skipToEnd = () => {
         this.setState({
-            secondsElapsed: (this.props.startSeconds - 2)
+            secondsElapsed: (this.props.startSeconds - 2),
         }, () => {
             if (!this.state.isRunning)
-                this.startClock()
+                this.startClock(true)
         })
     }
 

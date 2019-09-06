@@ -45,7 +45,7 @@ class App extends Component {
       shortBreakTimeLengthMinutes: 5,
 
       alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
-      alarmVolumePercent: 25,
+      alarmVolumePercent: 100,
 
       browserNotification: true,
 

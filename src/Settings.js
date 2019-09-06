@@ -77,6 +77,8 @@ export default class Settings extends Component {
                         <option value="25">25%</option>
                     </select>
                     <p>---</p>
+                    <button type="submit" value="submit">Save Settings</button>
+                    <p>---</p>
                 </form>
                 <button onClick={this.restoreDefaults}>Restore Defaults</button>
             </div>
