@@ -39,7 +39,7 @@ export default class TomatoCounter extends Component {
                         <p>Date Completed: {element.dateCompleted}</p>
                     </div>
                     <div>
-                        <CommentSection comment={element.comment} editLogComment={this.editLogComment.bind(this, element.id)}/>
+                        <CommentSection comment={element.comment} editingComment={element.editingComment} editLogComment={this.editLogComment.bind(this, element.id)}/>
                     </div>
                 </div>
             )

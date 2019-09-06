@@ -117,8 +117,8 @@ class App extends Component {
       isTomato: (timerType === 'pomodoro'),
       minutes: (secondsCompleted / 60),
       id: uuid(),
-      comment: "Dummy comments are here",
-      editingComment: false,
+      comment: "",
+      editingComment: true,
       timeStarted: formattedTimeStarted,
       timeCompleted: formattedTimeCompleted,
       dateCompleted: formattedDateCompleted
@@ -244,8 +244,21 @@ class App extends Component {
     })
   }
 
-  editLogComment = (id) => {
-    console.log(id);
+  editLogComment = (id, comment) => {
+    for (let i = 0; i < this.state.timeElements.length; i++) {
+      if (this.state.timeElements[i].id === id) {
+        let newTimeElement = {...this.state.timeElements[i], comment: comment, editingComment: false};
+        let newTimeElementsArr = [...this.state.timeElements];
+        newTimeElementsArr[i] = newTimeElement;
+
+        this.setState({
+          timeElements: [...newTimeElementsArr]
+        }, () => {
+          this.setElementsCookie();
+        })
+        break;
+      }
+    }
   }
 
   componentDidMount = () => {

@@ -5,7 +5,7 @@ export default class CommentSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            editingComment: true,
+            editingComment: this.props.editingComment,
             comment: this.props.comment
         }
     }
@@ -23,6 +23,12 @@ export default class CommentSection extends Component {
         })
     }
 
+    openCommentToEdit = () => {
+        this.setState({
+            editingComment: true
+        })
+    }
+
     render() {
 
         var commentSection;
@@ -35,7 +41,8 @@ export default class CommentSection extends Component {
         } else {
             commentSection = 
             <div>
-                NOT EDITING
+                <p>{this.props.comment}</p>
+                <button onClick={this.openCommentToEdit}>Edit Comment</button>
             </div>
         }
 

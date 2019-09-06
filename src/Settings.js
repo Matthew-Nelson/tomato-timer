@@ -77,13 +77,6 @@ export default class Settings extends Component {
                         <option value="25">25%</option>
                     </select>
                     <p>---</p>
-                    <p><strong>Browser Notification</strong></p>
-                    <p>---</p>
-                    <p><strong>Auto Start Pomodoros and Breaks</strong></p>
-                    <p>---</p>
-                    <p><strong>Pomodoros Log View Toggle</strong></p>
-                    <button type="submit" value="submit">Save Settings</button>
-                    <p>---</p>
                 </form>
                 <button onClick={this.restoreDefaults}>Restore Defaults</button>
             </div>
