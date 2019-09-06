@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tomato-timer/precache-manifest.c7c7506b0153aa36d7f825dbc7c639cd.js"
+  "/tomato-timer/precache-manifest.d3f9936332aa3f8e419d9441e7423325.js"
 );
 
 self.addEventListener('message', (event) => {
