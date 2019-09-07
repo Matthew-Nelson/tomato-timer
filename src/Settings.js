@@ -103,27 +103,3 @@ export default class Settings extends Component {
     }
 
 }
-
-// function getModalStyle() {
-//       const top = 50;
-//       const left = 50;
-//       const backgroundColor = "#181818";
-    
-//       return {
-//         backgroundColor: backgroundColor,
-//         top: `${top}%`,
-//         left: `${left}%`,
-//         transform: `translate(-${top}%, -${left}%)`,
-//       };
-//     }
-
-// const useStyles = makeStyles(theme => ({
-//     paper: {
-//         position: 'absolute',
-//         width: '80vw',
-//         backgroundColor: theme.palette.background.paper,
-//         border: '2px solid #000',
-//         boxShadow: theme.shadows[5],
-//         padding: theme.spacing(2, 4, 3),
-//     },
-//     }));
