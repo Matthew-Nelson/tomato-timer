@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Modal from '@material-ui/core/Modal';
 
 export default class Settings extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            ...props.settings
+            ...props.settings,
+            modalOpen: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -42,7 +44,17 @@ export default class Settings extends Component {
         })
     }
 
+    handleModalOpen = () => {
+        this.setState({
+            modalOpen: true
+        })
+    }
 
+    handleModalClose = () => {
+        this.setState({
+            modalOpen: false
+        })
+    };
 
     render() {
 
@@ -53,35 +65,65 @@ export default class Settings extends Component {
         return (
             <div>
                 <h2>SETTINGS</h2>
-                <form onSubmit={this.onSubmit} id="settings" >
-                    <p><strong>Custom Timer Times</strong></p>
-                    <div>
-                        <p>Pomodoro Time:</p>
-                        <input type="number" name="pomodoroTimeLengthMinutes" value={this.state.pomodoroTimeLengthMinutes} onChange={this.onChange} />
-                        <p>Short Break Time:</p>
-                        <input type="number" name="shortBreakTimeLengthMinutes" value={this.state.shortBreakTimeLengthMinutes} onChange={this.onChange}/>
-                        <p>Long Break Time:</p>
-                        <input type="number" name="longBreakTimeLengthMinutes" value={this.state.longBreakTimeLengthMinutes} onChange={this.onChange}/>
+                <button onClick={this.handleModalOpen}>Modal Open</button>
+                <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
+                    <div className={"modal-window"}>
+                        <form onSubmit={this.onSubmit} id="settings" >
+                            <p><strong>Custom Timer Times</strong></p>
+                            <div>
+                                <p>Pomodoro Time:</p>
+                                <input type="number" name="pomodoroTimeLengthMinutes" value={this.state.pomodoroTimeLengthMinutes} onChange={this.onChange} />
+                                <p>Short Break Time:</p>
+                                <input type="number" name="shortBreakTimeLengthMinutes" value={this.state.shortBreakTimeLengthMinutes} onChange={this.onChange}/>
+                                <p>Long Break Time:</p>
+                                <input type="number" name="longBreakTimeLengthMinutes" value={this.state.longBreakTimeLengthMinutes} onChange={this.onChange}/>
+                            </div>
+                            <p>---</p>
+                            <p><strong>Sound Picker</strong></p>
+                            <select name="alarmSoundUrl" onChange={this.onChange} value={this.state.alarmSoundUrl}>
+                                {alarmOptions}
+                            </select>
+                            <p>---</p>
+                            <p><strong>Adjust Volume</strong></p>
+                            <select name="alarmVolumePercent" onChange={this.onChange} value={this.state.alarmVolumePercent}>
+                                <option value="100">100%</option>
+                                <option value="75">75%</option>
+                                <option value="50">50%</option>
+                                <option value="25">25%</option>
+                            </select>
+                            <p>---</p>
+                            <button type="submit" value="submit">Save Settings</button>
+                            <p>---</p>
+                        </form>
+                        <button onClick={this.restoreDefaults}>Restore Defaults</button>
                     </div>
-                    <p>---</p>
-                    <p><strong>Sound Picker</strong></p>
-                    <select name="alarmSoundUrl" onChange={this.onChange} value={this.state.alarmSoundUrl}>
-                        {alarmOptions}
-                    </select>
-                    <p>---</p>
-                    <p><strong>Adjust Volume</strong></p>
-                    <select name="alarmVolumePercent" onChange={this.onChange} value={this.state.alarmVolumePercent}>
-                        <option value="100">100%</option>
-                        <option value="75">75%</option>
-                        <option value="50">50%</option>
-                        <option value="25">25%</option>
-                    </select>
-                    <p>---</p>
-                    <button type="submit" value="submit">Save Settings</button>
-                    <p>---</p>
-                </form>
-                <button onClick={this.restoreDefaults}>Restore Defaults</button>
+                </Modal>
             </div>
         )
     }
+
 }
+
+// function getModalStyle() {
+//       const top = 50;
+//       const left = 50;
+//       const backgroundColor = "#181818";
+    
+//       return {
+//         backgroundColor: backgroundColor,
+//         top: `${top}%`,
+//         left: `${left}%`,
+//         transform: `translate(-${top}%, -${left}%)`,
+//       };
+//     }
+
+// const useStyles = makeStyles(theme => ({
+//     paper: {
+//         position: 'absolute',
+//         width: '80vw',
+//         backgroundColor: theme.palette.background.paper,
+//         border: '2px solid #000',
+//         boxShadow: theme.shadows[5],
+//         padding: theme.spacing(2, 4, 3),
+//     },
+//     }));

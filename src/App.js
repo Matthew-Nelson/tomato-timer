@@ -3,6 +3,7 @@ import Header from './Header.js';
 import Clock from './Clock.js';
 import TomatoCounter from './TomatoCounter.js';
 import Settings from './Settings.js';
+import FAQ from './FAQ.js';
 import uuid from 'uuid';
 import { analogWatch, schoolBell, shipBell, templeBell } from './assets/alarm-sounds.js';
 import { withCookies } from 'react-cookie';
@@ -288,6 +289,7 @@ class App extends Component {
           <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie} editLogComment={this.editLogComment}/>
           <hr/>
           <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
+          <FAQ />
           <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />
         </header>
       </div>
