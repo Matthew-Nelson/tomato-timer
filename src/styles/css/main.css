@@ -6,13 +6,13 @@ body {
   border: 1px solid white;
   margin: 2rem auto 0; }
 
-.time-elements-wrapper .row {
+.single-element-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   border: 1px solid green; }
 
-.time-elements-wrapper .time-element {
+.time-element {
   height: 100px;
   width: 100px;
   display: flex;
@@ -20,9 +20,9 @@ body {
   align-items: center;
   margin-right: 2%;
   position: relative; }
-  .time-elements-wrapper .time-element.break {
+  .time-element.break {
     border: 1px solid grey; }
-  .time-elements-wrapper .time-element.tomato {
+  .time-element.tomato {
     border: 1px solid orange;
     border-radius: 50%; }
 

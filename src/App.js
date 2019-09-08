@@ -62,17 +62,100 @@ class App extends Component {
       timerType: 'pomodoro'
     }
 
+    this.dummyDaysWithWork = [
+      {
+        date: '9/5/2019',
+        id: uuid(),
+        timeElements: [
+          {
+            comment: 'my only work today comment',
+            dateCompleted: '9/5/2019',
+            timeCompleted: '7:29 AM',
+            timeStarted: '7:54 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: true,
+            minutes: 25
+          }
+        ]
+      },
+      {
+        date: '9/6/2019',
+        id: uuid(),
+        timeElements: [
+          {
+            comment: 'my first work today comment',
+            dateCompleted: '9/6/2019',
+            timeCompleted: '7:29 AM',
+            timeStarted: '7:54 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: true,
+            minutes: 25
+          },
+          {
+            comment: 'my second work today comment',
+            dateCompleted: '9/6/2019',
+            timeCompleted: '8:05 AM',
+            timeStarted: '8:30 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: true,
+            minutes: 25
+          }
+        ]
+      }
+    ]
+
     this.state = {
-      timeElements: cookies.get('timeElements') || [
-        // no default time Elements. The user hasnt completed any yet.
-      ],
       settings: cookies.get('settings') || {
         ...this.defaultSettings
       },
       clock: cookies.get('currentClockState') || {
         ...this.defaultClock
-      }
+      },
+      daysWithWork: cookies.get('daysWithWork') || [
+        ...this.dummyDaysWithWork
+      ]
     }
+  }
+
+  createNewDayWithElement = (newDate, newTimeElement) => {
+    var newDayWithWork = {
+      date: newDate,
+      id: uuid(),
+      timeElements: [
+        newTimeElement
+      ]
+    }
+    this.setState({
+      daysWithWork: [...this.state.daysWithWork, newDayWithWork]
+    }, () => {
+      this.setDaysCookie();
+    })
+  }
+
+  pushElementToExistingDay = (existingDateIndex, newTimeElement) => {
+    var newDaysWithWork = [...this.state.daysWithWork];
+    newDaysWithWork[existingDateIndex].timeElements.push(newTimeElement);
+    this.setState({
+      daysWithWork: [...newDaysWithWork]
+    }, () => {
+      this.setDaysCookie();
+    })
+  }
+
+  setDaysCookie = () => {
+    const { cookies } = this.props;
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
+  }
+
+  clearDaysCookie = () => {
+    this.setState({
+      daysWithWork: []
+    }, () => {
+      this.setDaysCookie();
+    })
   }
 
   createTimeElement = (timerType, secondsCompleted, timeStarted) => {
@@ -96,9 +179,9 @@ class App extends Component {
     var dateFin = new Date();
     var minutesFin = dateFin.getMinutes();
     var hoursFin = dateFin.getHours();
-    var monthFin = dateFin.getUTCMonth() + 1;
-    var dayFin = dateFin.getUTCDate();
-    var yearFin = dateFin.getUTCFullYear();
+    var monthFin = dateFin.getMonth() + 1;
+    var dayFin = dateFin.getDate();
+    var yearFin = dateFin.getFullYear();
 
     var amOrPmFin = "";
     if (hoursFin > 12) {
@@ -131,27 +214,44 @@ class App extends Component {
 
     var newTimeElement = this.createTimeElement(timerType, secondsCompleted, startedWhen);
 
-    this.setState({
-      timeElements: [...this.state.timeElements, newTimeElement]
-    }, () => {
-      this.setElementsCookie();
-    })
-
+    var dayToUpdate = {};
+    if (this.state.daysWithWork.some( (day) => {
+      dayToUpdate = day;
+      return day.date === newTimeElement.dateCompleted;
+    })) {
+      this.pushElementToExistingDay(this.state.daysWithWork.indexOf(dayToUpdate), newTimeElement);
+    } else {
+      this.createNewDayWithElement(newTimeElement.dateCompleted, newTimeElement);
+    }
+    
     var audio = document.getElementById("alarm-audio");
-    audio.play();
+    if (audio) {
+      audio.play();
+      console.log(audio);
+    } else {
+      console.log('audio not loaded?');
+      console.log(audio);
+    }
+    
 
   }
 
-  deleteElement = (id) => {
+  deleteElement = (dayId, elementId) => {
 
-    var newArray = this.state.timeElements.filter((element) => {
-      return element.id !== id;
-    })
+    var newDaysArray = this.state.daysWithWork;
+    newDaysArray.forEach( (day) => {
+      if (day.id === dayId) {
+        var newElementsArray = day.timeElements.filter( (element) => {
+          return element.id !== elementId;
+        })
+        day.timeElements = newElementsArray;
+      }
+    });
 
     this.setState({
-      timeElements: newArray
+      daysWithWork: [...newDaysArray]
     }, () => {
-      this.setElementsCookie();
+      this.setDaysCookie();
     })  
   }
 
@@ -166,18 +266,6 @@ class App extends Component {
     return expDate;
   }
 
-  setElementsCookie = () => {
-    const { cookies } = this.props;
-    cookies.set('timeElements', this.state.timeElements, { path: '/', expires: this.getExpDate()});
-  }
-
-  clearElementsCookie = () => {
-    this.setState({
-      timeElements: []
-    }, () => {
-      this.setElementsCookie();
-    })
-  }
 
   updateSettings = (returnedSettings) => {
 
@@ -245,21 +333,26 @@ class App extends Component {
     })
   }
 
-  editLogComment = (id, comment) => {
-    for (let i = 0; i < this.state.timeElements.length; i++) {
-      if (this.state.timeElements[i].id === id) {
-        let newTimeElement = {...this.state.timeElements[i], comment: comment, editingComment: false};
-        let newTimeElementsArr = [...this.state.timeElements];
-        newTimeElementsArr[i] = newTimeElement;
+  editLogComment = (dayId, elementId, comment) => {
 
-        this.setState({
-          timeElements: [...newTimeElementsArr]
-        }, () => {
-          this.setElementsCookie();
+    var newDaysArray = this.state.daysWithWork;
+    newDaysArray.forEach( (day) => {
+      if (day.id === dayId) {
+        day.timeElements.forEach( (element) => {
+          if (element.id === elementId) {
+            element.comment = comment;
+            element.editingComment = false;
+          }
         })
-        break;
       }
-    }
+    });
+
+    this.setState({
+      daysWithWork: [...newDaysArray]
+    }, () => {
+      this.setDaysCookie();
+    })  
+
   }
 
   componentDidMount = () => {
@@ -286,7 +379,7 @@ class App extends Component {
           <Header />
           <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60}/>
           <hr/>
-          <TomatoCounter timeElements={this.state.timeElements} deleteElement={this.deleteElement} clearElementsCookie={this.clearElementsCookie} editLogComment={this.editLogComment}/>
+          <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} clearElementsCookie={this.clearDaysCookie} editLogComment={this.editLogComment}/>
           <hr/>
           <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
           <FAQ />

@@ -1,25 +1,22 @@
-.time-elements-wrapper {
-    .row {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        border: 1px solid green;
+.single-element-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid green;
+}
+.time-element {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2%;
+    position: relative;
+    &.break {
+        border: 1px solid grey;
     }
-    .time-element {
-        height: 100px;
-        width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 2%;
-        position: relative;
-        &.break {
-            border: 1px solid grey;
-        }
-        &.tomato {
-            border: 1px solid orange;
-            border-radius: 50%;
-        }
+    &.tomato {
+        border: 1px solid orange;
+        border-radius: 50%;
     }
 }
-
