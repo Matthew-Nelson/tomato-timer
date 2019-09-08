@@ -19,7 +19,7 @@ export default class Clock extends Component {
         if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {
             message = "Start the clock and get to work!";
         } else if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds === this.state.secondsElapsed) {
-            message = "Good job! You made it to the break. Select whether you are going to take a short or long break."
+            message = "Good job! You made it to the break. Select whether you are going to take another break."
         } else if (this.state.isRunning === true && this.props.timerType === 'pomodoro') {
             message = "You're on the clock, keep focused on the task at hand!"
         } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {

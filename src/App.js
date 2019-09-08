@@ -161,6 +161,9 @@ class App extends Component {
   createTimeElement = (timerType, secondsCompleted, timeStarted) => {
     // formatting time started
     var minutesStrt = timeStarted.getMinutes();
+    if (minutesStrt.length === 1) {
+      minutesStrt = `0${minutesStrt}`;
+    }
     var hoursStrt = timeStarted.getHours();
 
     var amOrPmStrt = "";
@@ -178,6 +181,9 @@ class App extends Component {
     // formatting time and date completed
     var dateFin = new Date();
     var minutesFin = dateFin.getMinutes();
+    if (minutesFin.length === 1) {
+      minutesFin = `0${minutesFin}`;
+    }
     var hoursFin = dateFin.getHours();
     var monthFin = dateFin.getMonth() + 1;
     var dayFin = dateFin.getDate();

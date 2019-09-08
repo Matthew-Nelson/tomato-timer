@@ -41,6 +41,7 @@ export default class CommentSection extends Component {
         } else {
             commentSection = 
             <div>
+                <p>Comment:</p>
                 <p>{this.props.comment}</p>
                 <button onClick={this.openCommentToEdit}>Edit Comment</button>
             </div>
