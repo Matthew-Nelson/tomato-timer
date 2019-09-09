@@ -48,13 +48,7 @@ class App extends Component {
       alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
-      browserNotification: true,
-
-      autoStartSegments: false,
-
-      logViewPomodorosOnly: false,
-      logListView: true,
-      logDescendingList: true
+      showBreaksInLog: true
     }
 
     this.defaultClock = {
@@ -75,6 +69,16 @@ class App extends Component {
             editingComment: false,
             id: uuid(),
             isTomato: true,
+            minutes: 25
+          },
+          {
+            comment: 'my only work today comment',
+            dateCompleted: '9/5/2019',
+            timeCompleted: '7:29 AM',
+            timeStarted: '7:54 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: false,
             minutes: 25
           }
         ]
@@ -385,7 +389,7 @@ class App extends Component {
           <Header />
           <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60}/>
           <hr/>
-          <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} clearElementsCookie={this.clearDaysCookie} editLogComment={this.editLogComment}/>
+          <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} clearElementsCookie={this.clearDaysCookie} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
           <hr/>
           <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
           <FAQ />

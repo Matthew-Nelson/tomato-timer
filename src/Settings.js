@@ -9,9 +9,6 @@ export default class Settings extends Component {
             ...props.settings,
             modalOpen: false
         };
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange = (event) => {
@@ -21,6 +18,10 @@ export default class Settings extends Component {
         
         if (parseInt(event.target.value)) {
             value = parseInt(event.target.value);
+        } else if (event.target.value === "false") {
+            value = false;
+        } else if (event.target.value === "true") {
+            value = true;
         } else {
             value = event.target.value;
         }
@@ -91,6 +92,33 @@ export default class Settings extends Component {
                                 <option value="50">50%</option>
                                 <option value="25">25%</option>
                             </select>
+                            <p>---</p>
+                            
+                            <div>
+                                Show breaks in log
+                                <label>
+                                    <input
+                                    type="radio"
+                                    name="showBreaksInLog"
+                                    value={true}
+                                    checked={this.state.showBreaksInLog}
+                                    onChange={this.onChange}
+                                    />
+                                        Yes
+                                </label>
+                                <label>
+                                    <input
+                                    type="radio"
+                                    name="showBreaksInLog"
+                                    value={false}
+                                    checked={!this.state.showBreaksInLog}
+                                    onChange={this.onChange}
+                                    />
+                                        No
+                                </label>
+                            </div>
+                            
+
                             <p>---</p>
                             <button type="submit" value="submit">Save Settings</button>
                             <p>---</p>

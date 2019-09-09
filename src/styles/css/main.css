@@ -12,6 +12,8 @@ body {
   display: inline-block; }
   .single-element-wrapper:hover .element-pop-up {
     display: block; }
+  .single-element-wrapper.hide-element {
+    display: none; }
 
 .time-element {
   height: 100px;
@@ -45,6 +47,12 @@ body {
       position: absolute;
       left: calc(50% - 12px);
       top: -22px; }
+
+.day.hide-day {
+  display: none; }
+
+.day.no-tomatoes.hide-breaks {
+  display: none; }
 
 .modal-window {
   width: 75vw;

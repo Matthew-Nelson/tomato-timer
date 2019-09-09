@@ -9,19 +9,21 @@ export default class TomatoCounter extends Component {
 
     render() {
 
-        var filterEmptyDays = this.props.daysWithWork.filter( (day) => {
+
+        var filterDays = this.props.daysWithWork.filter( (day) => {
 
             return day.timeElements.length > 0;
             
         })
 
-        var daysArray = filterEmptyDays.map( (day) => {
+        
+        var daysArray = filterDays.map( (day) => {
 
             var elementsArray = []
 
             day.timeElements.forEach( (element) => {
                 elementsArray.push(
-                    <div className="single-element-wrapper" key={element.id}>
+                    <div className={`single-element-wrapper ${element.isTomato ? 'tomato' : 'break'} ${!element.isTomato && !this.props.showBreaksInLog ? 'hide-element' : 'show-element'}`} key={element.id}>
                         <div className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
                             <div>
                                 <p style={{textAlign: 'center'}}>{element.minutes}<br/>
@@ -47,7 +49,7 @@ export default class TomatoCounter extends Component {
             })
 
             return (
-                <div className={'day'} key={day.id}>
+                <div className={`day ${(day.timeElements.some( (element) => element.isTomato) ) ? 'has-tomatoes' : 'no-tomatoes'} ${( this.props.showBreaksInLog ) ? 'show-breaks' : 'hide-breaks'}`} key={day.id}>
                     <p className={'date'}>{day.date}</p>
                     {elementsArray}
                 </div>

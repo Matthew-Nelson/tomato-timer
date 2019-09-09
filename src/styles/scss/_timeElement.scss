@@ -7,6 +7,9 @@
             display: block;
         }
     }
+    &.hide-element {
+        display: none;
+    }
 }
 .time-element {
     height: 100px;
@@ -44,4 +47,10 @@
             top: -22px;
         }
     }
+}
+.day.hide-day {
+    display: none;
+}
+.day.no-tomatoes.hide-breaks {
+    display: none;
 }
