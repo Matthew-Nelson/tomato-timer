@@ -11,9 +11,7 @@ export default class TomatoCounter extends Component {
 
 
         var filterDays = this.props.daysWithWork.filter( (day) => {
-
             return day.timeElements.length > 0;
-            
         })
 
         
@@ -60,13 +58,11 @@ export default class TomatoCounter extends Component {
 
             <div>
                 <h2>Pomodoros Log</h2>
-                {/* <p>This section acts as a log of the pomodoros that you have completed.</p>
-                <p>If you would like to see your breaks as well, you can choose to show them from the settings menu.</p> */}
+                <p>This section acts as a log of the pomodoros that you have completed.</p>
+                <p>If you would like to see your breaks as well, you can choose to show them from the settings menu.</p>
                 <div>
                     {daysArray}
                 </div>
-                <button onClick={this.props.clearElementsCookie}>Clear Entire Log</button>
-                {/* move to settings */}
             </div>
         )
     }

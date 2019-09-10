@@ -25,7 +25,7 @@ export default class Settings extends Component {
         } else {
             value = event.target.value;
         }
-
+        
         this.setState({
             [setting]: value
         });
@@ -66,7 +66,7 @@ export default class Settings extends Component {
         return (
             <div>
                 <h2>SETTINGS</h2>
-                <button onClick={this.handleModalOpen}>Modal Open</button>
+                <button onClick={this.handleModalOpen}>Edit Settings</button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
                     <div className={"modal-window"}>
                         <form onSubmit={this.onSubmit} id="settings" >
@@ -91,6 +91,7 @@ export default class Settings extends Component {
                                 <option value="75">75%</option>
                                 <option value="50">50%</option>
                                 <option value="25">25%</option>
+                                <option value="0">0%</option>
                             </select>
                             <p>---</p>
                             
@@ -118,12 +119,36 @@ export default class Settings extends Component {
                                 </label>
                             </div>
                             
+                            <div>
+                                Would you like to have the option to skip to the end of the timer? This should mainly be used for demonstration purposes. Checking 'Yes' will reveal a button upon naviagting back to the timer.
+                                <label>
+                                    <input
+                                    type="radio"
+                                    name="showSkipButton"
+                                    value={true}
+                                    checked={this.state.showSkipButton}
+                                    onChange={this.onChange}
+                                    />
+                                        Yes
+                                </label>
+                                <label>
+                                    <input
+                                    type="radio"
+                                    name="showSkipButton"
+                                    value={false}
+                                    checked={!this.state.showSkipButton}
+                                    onChange={this.onChange}
+                                    />
+                                        No
+                                </label>
+                            </div>
 
                             <p>---</p>
                             <button type="submit" value="submit">Save Settings</button>
                             <p>---</p>
                         </form>
                         <button onClick={this.restoreDefaults}>Restore Defaults</button>
+                        <button onClick={this.props.clearDaysCookie}>Clear Entire Log</button>
                     </div>
                 </Modal>
             </div>

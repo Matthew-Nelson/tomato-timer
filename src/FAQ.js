@@ -27,17 +27,52 @@ export default class FAQ extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleModalOpen}>Open the FAQ Modal</button>
+                <button onClick={this.handleModalOpen}>Instructions and More Info</button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose} >
                     <div className={'modal-window'}>
-                        <h2>FAQ Section</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis enim mauris, et facilisis libero lacinia quis. Nam arcu lectus, sodales in nisl quis, tempus tempor tellus. Phasellus eu pulvinar urna. Sed vel semper dui. Praesent aliquet vulputate nisl a cursus. Phasellus finibus eleifend metus, ut faucibus quam pulvinar vel. Aliquam bibendum nibh augue, quis scelerisque tortor sodales eu. Nullam in risus massa.</p>
+                        <h2>Instructions and More Information</h2>
 
-                        <p>Phasellus sollicitudin sem sit amet velit eleifend, ac efficitur purus fringilla. Etiam nec odio vulputate, volutpat diam ac, molestie risus. Etiam imperdiet turpis a rutrum semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec convallis sollicitudin luctus. Nulla euismod leo nunc, non gravida massa sollicitudin at. Suspendisse rutrum eu nunc in ornare. Duis luctus nunc at eros tincidunt dignissim. In quis tristique velit. Pellentesque purus nulla, rhoncus id massa nec, tempor condimentum odio. Donec dictum porta purus, eget gravida orci.</p>
+                        <p>The Pomodoro Technique is a simple yet effective method of time management that aims to improve work and study habits through structured "work" (or "pomodoro") and "break" segments. This technique was created by Francesco Cirillo and helps keep the user on task and focused during the "work" segments, while giving them adequate time for rest and recouperation during the "break" segments. This technique helps reduce the chances of burnout and can be an effective strategy towards increasing productivity. Learn more about the Pomodoro Technique on <a href="https://francescocirillo.com/pages/pomodoro-technique" target="_blank" rel="noopener noreferrer">Francesco Cirillo's website</a>.</p>
 
-                        <p>Morbi consequat felis egestas orci sodales iaculis. In maximus neque elit, sit amet consequat neque ullamcorper sit amet. Praesent eget sapien lorem. Cras eget aliquet purus. Ut vel porta sapien, id semper metus. Curabitur lacus neque, accumsan ut cursus at, consequat at ex. Nullam consequat nisl vitae magna sollicitudin, vehicula semper nisi mattis. Praesent nibh nisl, facilisis a nulla nec, molestie mattis mi. Cras sed massa est. Vestibulum et sem eu justo mollis volutpat nec ac lectus. Curabitur nec nisl leo. Duis aliquam elit a nisl vehicula, gravida cursus eros varius. Pellentesque eu imperdiet sapien. Phasellus sit amet turpis id purus ultricies tristique quis vitae leo. Donec est orci, eleifend vitae diam in, vestibulum feugiat turpis. Maecenas accumsan ante urna, ac pretium neque hendrerit a.</p>
+                        <p>This application, the Tomato Tracker, provides the user with a timer that will accurately track the user's time spent during a "pomodoro" or break and log their completed time segments. This gives the user a sense of accomplishment and a graphical representation of their hard work! The user can also log comments to each of their time segments to see how they spent their time. This will aid when reviewing the work completed but also give the user a better ability to estimate the time needed to complete certain tasks in the future.</p>
 
-                        <p>Aenean vitae massa est. Vivamus congue leo odio, porttitor scelerisque orci iaculis tristique. Sed nisi velit, interdum at eros at, dapibus mollis turpis. Aenean iaculis, enim ut porta iaculis, leo dolor elementum quam, non euismod erat mauris nec velit. Quisque pharetra, ante in porta ultricies, magna dolor lacinia nisl, sit amet feugiat nulla tortor eu nisl. Fusce rhoncus tortor nec tortor gravida, non sodales nibh tempor. Mauris vulputate mollis metus id ultrices. Maecenas nec molestie magna. Nulla interdum, elit id semper laoreet, nisi eros suscipit est, vel interdum est dui dictum lacus. Nulla posuere erat leo, congue placerat augue rutrum eu. Maecenas nec cursus urna, et lacinia nulla. Vestibulum aliquet mi nibh, eu porta ex ultricies dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                        <p>The basics are:</p>
+                        <ol>
+                            <li>Start the "Pomodoro" timer and work for 25 minutes. Make an effort to avoid distractions during this time.</li>
+                            <li>Take a 5 minute break! You've earned it. Get up, stretch, meditate, grab a cup of coffee or even browse social media.</li>
+                            <li>Rinse and repeat until you have completed 4 Pomodoros.</li>
+                            <li>After completing 4 Pomodoros, take a 15 minute break. This longer break ensures that you are giving yourself enough time to rest and digest the information from your work or study sessions.</li>
+                            <li>Continue this cycle as needed!</li>
+                        </ol>
+
+                        <p>This app was inspired by:</p>
+                        <ol>
+                            <li><a href="https://tomato-timer.com/" target="_blank" rel="noopener noreferrer">TomatoTimer</a></li>
+                            <li><a href="http://tomatoi.st/" target="_blank" rel="noopener noreferrer">Tomatoist</a></li>
+                        </ol>
+
+                        <p>This application was built using the React Javascript framework and was done as a challenge to push myself to learn more about these technologies and to also provide myself with a useful tool for my future productivity. This application uses cookies to store the settings and Pomodoro data.</p>
+
+                        <p>Why use this app?</p>
+
+                        <p>This application gives the user an easy to use Pomodoro Timer that also allows them to track their time spent working and create detailed logs of how they spent their time.</p>
+                        
+                        <p>Features and settings include:</p>
+                        <ol>
+                            <li>Customize Pomodoro and Break times</li>
+                            <li>Pick from a selection of alarm sounds</li>
+                            <li>Adjust alarm volume</li>
+                            <li>Toggle between showing only Pomodoros or showing Pomodoros and Breaks in the log</li>
+                            <li>A "skip to the end of the timer" button. This is mainly used for demonstration purposes</li>
+                        </ol>
+
+                        <p>Find me on the following platforms:</p>
+                        <ul>
+                            <li><a href="https://mattnelson.dev/" target="_blank" rel="noopener noreferrer">My personal site</a></li>
+                            <li><a href="https://github.com/Matthew-Nelson" target="_blank" rel="noopener noreferrer">My Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/matthewbnelson/" target="_blank" rel="noopener noreferrer">My LinkedIn</a></li>
+                        </ul>
+
                     </div>
                 </Modal>
             </div>

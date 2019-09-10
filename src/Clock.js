@@ -143,9 +143,17 @@ export default class Clock extends Component {
 
     render() {
 
+        var skipToEnd;
+        if (this.props.showSkipButton) {
+            skipToEnd = 
+                <div style={demonstrationStyle} className={"skip-to-end"}>
+                    <p style={{marginTop: 0}}>For demonstration purposes, feel free to skip to the end of the timer:</p>
+                    <button onClick={this.skipToEnd}>Skip to end of Timer</button>
+                </div>
+        }
+
         return (
             <div>
-                {this.displayMessage()}
                 
                 <ClockChanger changeClock={this.changeClock} pomodoroTimeLengthSeconds={this.props.pomodoroTimeLengthSeconds} shortBreakTimeLengthSeconds={this.props.shortBreakTimeLengthSeconds} longBreakTimeLengthSeconds={this.props.longBreakTimeLengthSeconds}/>
                 
@@ -159,11 +167,9 @@ export default class Clock extends Component {
                     <button onClick={this.resetClock}>Reset</button>
                 </div>
 
-                <div style={demonstrationStyle}>
-                    <p style={{marginTop: 0}}>For demonstration purposes, feel free to skip to the end of the timer:</p>
-                    <button onClick={this.skipToEnd}>Skip to end of Timer</button>
-                </div>
-                
+                {this.displayMessage()}
+
+                {skipToEnd}
 
             </div>
         )

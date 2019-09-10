@@ -45,10 +45,11 @@ class App extends Component {
       longBreakTimeLengthMinutes: 10,
       shortBreakTimeLengthMinutes: 5,
 
-      alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
+      alarmSoundUrl: '/tomato-tracker/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
-      showBreaksInLog: true
+      showBreaksInLog: false,
+      showSkipButton: false
     }
 
     this.defaultClock = {
@@ -57,32 +58,6 @@ class App extends Component {
     }
 
     this.dummyDaysWithWork = [
-      {
-        date: '9/5/2019',
-        id: uuid(),
-        timeElements: [
-          {
-            comment: 'my only work today comment',
-            dateCompleted: '9/5/2019',
-            timeCompleted: '7:29 AM',
-            timeStarted: '7:54 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: true,
-            minutes: 25
-          },
-          {
-            comment: 'my only work today comment',
-            dateCompleted: '9/5/2019',
-            timeCompleted: '7:29 AM',
-            timeStarted: '7:54 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: false,
-            minutes: 25
-          }
-        ]
-      },
       {
         date: '9/6/2019',
         id: uuid(),
@@ -105,6 +80,32 @@ class App extends Component {
             editingComment: false,
             id: uuid(),
             isTomato: true,
+            minutes: 25
+          }
+        ]
+      },
+      {
+        date: '9/5/2019',
+        id: uuid(),
+        timeElements: [
+          {
+            comment: 'my only work today comment',
+            dateCompleted: '9/5/2019',
+            timeCompleted: '7:29 AM',
+            timeStarted: '7:54 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: true,
+            minutes: 25
+          },
+          {
+            comment: 'my only work today comment',
+            dateCompleted: '9/5/2019',
+            timeCompleted: '7:29 AM',
+            timeStarted: '7:54 AM',
+            editingComment: false,
+            id: uuid(),
+            isTomato: false,
             minutes: 25
           }
         ]
@@ -133,7 +134,7 @@ class App extends Component {
       ]
     }
     this.setState({
-      daysWithWork: [...this.state.daysWithWork, newDayWithWork]
+      daysWithWork: [newDayWithWork, ...this.state.daysWithWork]
     }, () => {
       this.setDaysCookie();
     })
@@ -165,7 +166,7 @@ class App extends Component {
   createTimeElement = (timerType, secondsCompleted, timeStarted) => {
     // formatting time started
     var minutesStrt = timeStarted.getMinutes();
-    if (minutesStrt.length === 1) {
+    if (minutesStrt.toString().length === 1) {
       minutesStrt = `0${minutesStrt}`;
     }
     var hoursStrt = timeStarted.getHours();
@@ -185,7 +186,7 @@ class App extends Component {
     // formatting time and date completed
     var dateFin = new Date();
     var minutesFin = dateFin.getMinutes();
-    if (minutesFin.length === 1) {
+    if (minutesFin.toString().length === 1) {
       minutesFin = `0${minutesFin}`;
     }
     var hoursFin = dateFin.getHours();
@@ -387,11 +388,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Header />
-          <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60}/>
+          <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60} showSkipButton={this.state.settings.showSkipButton}/>
           <hr/>
-          <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} clearElementsCookie={this.clearDaysCookie} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
+          <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
           <hr/>
-          <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie}/>
+          <Settings alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie} clearDaysCookie={this.clearDaysCookie}/>
           <FAQ />
           <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />
         </header>
