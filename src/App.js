@@ -42,7 +42,7 @@ class App extends Component {
 
     this.defaultSettings = {
       pomodoroTimeLengthMinutes: 25,
-      longBreakTimeLengthMinutes: 10,
+      longBreakTimeLengthMinutes: 15,
       shortBreakTimeLengthMinutes: 5,
 
       alarmSoundUrl: '/tomato-tracker/static/media/ship-bell.be4257c1.mp3',
@@ -53,64 +53,9 @@ class App extends Component {
     }
 
     this.defaultClock = {
-      startSeconds: 1500,
+      startSeconds: (this.defaultSettings.pomodoroTimeLengthMinutes * 60),
       timerType: 'pomodoro'
     }
-
-    this.dummyDaysWithWork = [
-      {
-        date: '9/6/2019',
-        id: uuid(),
-        timeElements: [
-          {
-            comment: 'my first work today comment',
-            dateCompleted: '9/6/2019',
-            timeCompleted: '7:29 AM',
-            timeStarted: '7:54 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: true,
-            minutes: 25
-          },
-          {
-            comment: 'my second work today comment',
-            dateCompleted: '9/6/2019',
-            timeCompleted: '8:05 AM',
-            timeStarted: '8:30 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: true,
-            minutes: 25
-          }
-        ]
-      },
-      {
-        date: '9/5/2019',
-        id: uuid(),
-        timeElements: [
-          {
-            comment: 'my only work today comment',
-            dateCompleted: '9/5/2019',
-            timeCompleted: '7:29 AM',
-            timeStarted: '7:54 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: true,
-            minutes: 25
-          },
-          {
-            comment: 'my only work today comment',
-            dateCompleted: '9/5/2019',
-            timeCompleted: '7:29 AM',
-            timeStarted: '7:54 AM',
-            editingComment: false,
-            id: uuid(),
-            isTomato: false,
-            minutes: 25
-          }
-        ]
-      }
-    ]
 
     this.state = {
       settings: cookies.get('settings') || {
@@ -119,9 +64,7 @@ class App extends Component {
       clock: cookies.get('currentClockState') || {
         ...this.defaultClock
       },
-      daysWithWork: cookies.get('daysWithWork') || [
-        ...this.dummyDaysWithWork
-      ]
+      daysWithWork: cookies.get('daysWithWork') || []
     }
   }
 
@@ -152,7 +95,7 @@ class App extends Component {
 
   setDaysCookie = () => {
     const { cookies } = this.props;
-    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearDaysCookie = () => {
@@ -305,12 +248,12 @@ class App extends Component {
 
   setCurrentClockCookie = () => {
     const { cookies } = this.props;
-    cookies.set('currentClockState', this.state.clock, { path: '/', expires: this.getExpDate()})
+    cookies.set('currentClockState', this.state.clock, { path: '/tomato-tracker/', expires: this.getExpDate()})
   }
 
   setSettingsCookie = () => {
     const { cookies } = this.props;
-    cookies.set('settings', this.state.settings, { path: '/', expires: this.getExpDate()});
+    cookies.set('settings', this.state.settings, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearSettingsCookie = () => {
