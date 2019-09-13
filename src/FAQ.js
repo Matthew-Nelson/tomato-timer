@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 
 export default class FAQ extends Component {
@@ -27,7 +28,7 @@ export default class FAQ extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.handleModalOpen}>Instructions and More Info</button>
+                <Button variant="outlined" color="" onClick={this.handleModalOpen}>More Info</Button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose} >
                     <div className={'modal-window'}>
                         <h2>Instructions and More Information</h2>

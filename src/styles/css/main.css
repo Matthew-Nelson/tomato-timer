@@ -1,14 +1,87 @@
 body {
-  background-color: #2b2b2b;
-  color: #ffffff;
-  padding: 1rem;
-  max-width: 700px;
-  border: 1px solid white;
-  margin: 2rem auto 0; }
+  background-color: #a9a9a9;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif; }
+  body h1,
+  body #clock {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: 0em; }
+
+.header {
+  display: flex;
+  justify-content: space-between; }
+  .header h1 {
+    margin-top: 0; }
+  .header .header-buttons {
+    display: flex; }
+    .header .header-buttons div:first-of-type {
+      margin-right: .5rem; }
+    .header .header-buttons div button {
+      min-width: 150px; }
+  @media only screen and (max-width: 767px) {
+    .header h1 {
+      margin: 0;
+      align-self: center; }
+    .header .header-buttons {
+      flex-direction: column; }
+      .header .header-buttons div:first-of-type {
+        margin-right: 0;
+        margin-bottom: .5rem; }
+      .header .header-buttons div button {
+        min-width: 150px; } }
+  @media only screen and (max-width: 531px) {
+    .header {
+      flex-direction: column; }
+      .header h1 {
+        margin-bottom: 1rem;
+        text-align: center; }
+      .header .header-buttons button {
+        width: 100%; } }
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .clock-container #clock {
+    display: inline-block;
+    padding: 1rem;
+    font-size: 50px;
+    margin: 1rem 0; }
+  .clock-container .clock-changer,
+  .clock-container .clock-controls {
+    max-width: 767px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; }
+  .clock-container .skip-to-end {
+    margin: 0;
+    border: 1px dotted grey;
+    padding: 1.5rem 1rem; }
+    .clock-container .skip-to-end p {
+      margin-top: 0; }
+    .clock-container .skip-to-end button {
+      display: block;
+      margin: 0 auto; }
+  @media only screen and (min-width: 532px) {
+    .clock-container .clock-changer button,
+    .clock-container .clock-controls button {
+      width: 30%; } }
+  @media only screen and (max-width: 531px) {
+    .clock-container .clock-changer,
+    .clock-container .clock-controls {
+      flex-direction: column; }
+      .clock-container .clock-changer button,
+      .clock-container .clock-controls button {
+        width: 100%; }
+        .clock-container .clock-changer button:not(:last-of-type),
+        .clock-container .clock-controls button:not(:last-of-type) {
+          margin-bottom: .5rem; }
+    .clock-container .skip-to-end button {
+      width: 100%; } }
 
 .single-element-wrapper {
   padding: .5rem;
-  border: 1px solid green;
   display: inline-block; }
   .single-element-wrapper:hover .element-pop-up {
     display: block; }
@@ -23,11 +96,14 @@ body {
   align-items: center;
   margin-right: 2%;
   position: relative; }
-  .time-element.break {
-    border: 1px solid grey; }
-  .time-element.tomato {
-    border: 1px solid orange;
-    border-radius: 50%; }
+  .time-element.break .coffee-image {
+    height: 100%; }
+  .time-element.break .tomato-image {
+    display: none; }
+  .time-element.tomato .coffee-image {
+    display: none; }
+  .time-element.tomato .tomato-image {
+    width: 100%; }
   .time-element .element-pop-up {
     display: none;
     position: absolute;
@@ -58,7 +134,11 @@ body {
   width: 75vw;
   border: 1px solid red;
   position: absolute;
-  background-color: black;
+  background-color: gray;
   top: 50px;
   left: 50px;
   padding: 2rem 4rem; }
+
+.app-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }

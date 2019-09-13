@@ -1,6 +1,6 @@
 .single-element-wrapper {
     padding: .5rem;
-    border: 1px solid green;
+    // border: 1px solid green;
     display: inline-block;
     &:hover {
         .element-pop-up {
@@ -20,11 +20,24 @@
     margin-right: 2%;
     position: relative;
     &.break {
-        border: 1px solid grey;
+        // border: 1px solid grey;
+        .coffee-image {
+            height: 100%;
+        }
+        .tomato-image {
+            display: none;
+        }
     }
     &.tomato {
-        border: 1px solid orange;
-        border-radius: 50%;
+        // border: 1px solid orange;
+        // border-radius: 50%;
+        .coffee-image {
+            display: none;
+        }
+        .tomato-image {
+            // display: none;
+            width: 100%;
+        }
     }
     .element-pop-up {
         display: none;

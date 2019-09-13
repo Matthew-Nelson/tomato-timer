@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 
 export default class Settings extends Component {
 
@@ -65,8 +66,7 @@ export default class Settings extends Component {
 
         return (
             <div>
-                <h2>SETTINGS</h2>
-                <button onClick={this.handleModalOpen}>Edit Settings</button>
+                <Button variant="outlined" color="" onClick={this.handleModalOpen}>Settings</Button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
                     <div className={"modal-window"}>
                         <form onSubmit={this.onSubmit} id="settings" >

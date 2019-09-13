@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CommentSection from './CommentSection.js';
+import tomatoImg from './assets/tomato.png';
+import coffeeImg from './assets/coffee.png';
 
 export default class TomatoCounter extends Component {
 
@@ -23,12 +25,14 @@ export default class TomatoCounter extends Component {
                 elementsArray.push(
                     <div className={`single-element-wrapper ${element.isTomato ? 'tomato' : 'break'} ${!element.isTomato && !this.props.showBreaksInLog ? 'hide-element' : 'show-element'}`} key={element.id}>
                         <div className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
-                            <div>
-                                <p style={{textAlign: 'center'}}>{element.minutes}<br/>
-                                minutes
-                                </p>
-                            </div>
+                            <img src={tomatoImg} className={'tomato-image'} alt="Tomato Icon"/>
+                            <img src={coffeeImg} className={'coffee-image'} alt="Coffee Icon"/>
                             <div className={"element-pop-up"}>
+                                <div>
+                                    <p style={{textAlign: 'center'}}>{element.minutes}<br/>
+                                    minutes
+                                    </p>
+                                </div>
                                 <div>
                                     <button onClick={this.props.deleteElement.bind(this, day.id, element.id)} className="rm-button">Delete Element</button>
                                 </div>
@@ -48,7 +52,7 @@ export default class TomatoCounter extends Component {
 
             return (
                 <div className={`day ${(day.timeElements.some( (element) => element.isTomato) ) ? 'has-tomatoes' : 'no-tomatoes'} ${( this.props.showBreaksInLog ) ? 'show-breaks' : 'hide-breaks'}`} key={day.id}>
-                    <p className={'date'}>{day.date}</p>
+                    <h3 className={'date'}>{day.date}</h3>
                     {elementsArray}
                 </div>
             )
@@ -58,8 +62,6 @@ export default class TomatoCounter extends Component {
 
             <div>
                 <h2>Pomodoros Log</h2>
-                <p>This section acts as a log of the pomodoros that you have completed.</p>
-                <p>If you would like to see your breaks as well, you can choose to show them from the settings menu.</p>
                 <div>
                     {daysArray}
                 </div>

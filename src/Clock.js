@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ClockChanger from './ClockChanger.js';
+import Button from '@material-ui/core/Button';
 
 export default class Clock extends Component {
 
@@ -30,7 +31,7 @@ export default class Clock extends Component {
             message = "You're on your break. Get up, stretch, grab a snack or water if needed and relax!"
         }
 
-        return <p>{message}</p>
+        return <h3>{message}</h3>
     }
 
     changeClock = (newLength, newTimerType) => {
@@ -146,25 +147,25 @@ export default class Clock extends Component {
         var skipToEnd;
         if (this.props.showSkipButton) {
             skipToEnd = 
-                <div style={demonstrationStyle} className={"skip-to-end"}>
-                    <p style={{marginTop: 0}}>For demonstration purposes, feel free to skip to the end of the timer:</p>
-                    <button onClick={this.skipToEnd}>Skip to end of Timer</button>
+                <div className={"skip-to-end"}>
+                    <p>For demonstration purposes, feel free to skip to the end of the timer</p>
+                    <Button variant="outlined" color="" onClick={this.skipToEnd}>Skip to end of Timer</Button>
                 </div>
         }
 
         return (
-            <div>
+            <div className={"clock-container"}>
                 
                 <ClockChanger changeClock={this.changeClock} pomodoroTimeLengthSeconds={this.props.pomodoroTimeLengthSeconds} shortBreakTimeLengthSeconds={this.props.shortBreakTimeLengthSeconds} longBreakTimeLengthSeconds={this.props.longBreakTimeLengthSeconds}/>
                 
                 
 
-                <h2 style={clockStyle}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
+                <h2 id={"clock"}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 
-                <div>
-                    <button onClick={this.startClock}>Start</button>
-                    <button onClick={this.stopClock}>Stop</button>
-                    <button onClick={this.resetClock}>Reset</button>
+                <div className={"clock-controls"}>
+                    <Button variant="outlined" color="" onClick={this.startClock}>Start</Button>
+                    <Button variant="outlined" color="" onClick={this.stopClock}>Stop</Button>
+                    <Button variant="outlined" color="" onClick={this.resetClock}>Reset</Button>
                 </div>
 
                 {this.displayMessage()}
@@ -174,16 +175,4 @@ export default class Clock extends Component {
             </div>
         )
     }
-}
-
-const clockStyle = {
-    display: 'inline-block',
-    padding: '1rem',
-    border: '1px solid red'
-}
-
-const demonstrationStyle = {
-    border: '1px dotted grey',
-    padding: '1rem',
-    margin: '1rem 0'
 }
