@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 
 export default class Settings extends Component {
@@ -68,6 +69,7 @@ export default class Settings extends Component {
             <div>
                 <Button variant="outlined" color="" onClick={this.handleModalOpen}>Settings</Button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
+                    <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
                     <div className={"modal-window"}>
                         <form onSubmit={this.onSubmit} id="settings" >
                             <p><strong>Custom Timer Times</strong></p>
@@ -96,7 +98,7 @@ export default class Settings extends Component {
                             <p>---</p>
                             
                             <div>
-                                Show breaks in log
+                               <p>Show breaks in log</p>
                                 <label>
                                     <input
                                     type="radio"
@@ -119,8 +121,10 @@ export default class Settings extends Component {
                                 </label>
                             </div>
                             
+                            <p>---</p>
+
                             <div>
-                                Would you like to have the option to skip to the end of the timer? This should mainly be used for demonstration purposes. Checking 'Yes' will reveal a button upon naviagting back to the timer.
+                                <p>Would you like to have the option to skip to the end of the timer? This should mainly be used for demonstration purposes. Checking 'Yes' will reveal a button upon naviagting back to the timer.</p>
                                 <label>
                                     <input
                                     type="radio"
@@ -150,6 +154,7 @@ export default class Settings extends Component {
                         <button onClick={this.restoreDefaults}>Restore Defaults</button>
                         <button onClick={this.props.clearDaysCookie}>Clear Entire Log</button>
                     </div>
+                </Fade>
                 </Modal>
             </div>
         )

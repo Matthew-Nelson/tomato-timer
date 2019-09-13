@@ -44,7 +44,7 @@ class App extends Component {
       longBreakTimeLengthMinutes: 15,
       shortBreakTimeLengthMinutes: 5,
 
-      alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
+      alarmSoundUrl: 'tomato-tracker/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
       showBreaksInLog: false,

@@ -24,6 +24,7 @@ export default class TomatoCounter extends Component {
             day.timeElements.forEach( (element) => {
                 elementsArray.push(
                     <div className={`single-element-wrapper ${element.isTomato ? 'tomato' : 'break'} ${!element.isTomato && !this.props.showBreaksInLog ? 'hide-element' : 'show-element'}`} key={element.id}>
+                        
                         <div className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
                             <img src={tomatoImg} className={'tomato-image'} alt="Tomato Icon"/>
                             <img src={coffeeImg} className={'coffee-image'} alt="Coffee Icon"/>
