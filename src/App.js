@@ -94,7 +94,7 @@ class App extends Component {
 
   setDaysCookie = () => {
     const { cookies } = this.props;
-    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearDaysCookie = () => {
@@ -252,12 +252,12 @@ class App extends Component {
 
   setCurrentClockCookie = () => {
     const { cookies } = this.props;
-    cookies.set('currentClockState', this.state.clock, { path: '/', expires: this.getExpDate()})
+    cookies.set('currentClockState', this.state.clock, { path: '/tomato-tracker/', expires: this.getExpDate()})
   }
 
   setSettingsCookie = () => {
     const { cookies } = this.props;
-    cookies.set('settings', this.state.settings, { path: '/', expires: this.getExpDate()});
+    cookies.set('settings', this.state.settings, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearSettingsCookie = () => {
