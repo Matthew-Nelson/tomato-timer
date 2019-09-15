@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header.js';
 import Clock from './Clock.js';
 import TomatoCounter from './TomatoCounter.js';
+import Footer from './Footer.js';
 import Container from '@material-ui/core/Container';
 import uuid from 'uuid';
 import { analogWatch, schoolBell, shipBell, templeBell } from './assets/alarm-sounds.js';
@@ -41,14 +42,14 @@ class App extends Component {
 
     this.defaultSettings = {
       pomodoroTimeLengthMinutes: 25,
-      longBreakTimeLengthMinutes: 15,
+      longBreakTimeLengthMinutes: 10,
       shortBreakTimeLengthMinutes: 5,
 
-      alarmSoundUrl: 'tomato-tracker/static/media/ship-bell.be4257c1.mp3',
+      alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
-      showBreaksInLog: false,
-      showSkipButton: false
+      showBreaksInLog: true,
+      showSkipButton: true
     }
 
     this.defaultClock = {
@@ -94,7 +95,7 @@ class App extends Component {
 
   setDaysCookie = () => {
     const { cookies } = this.props;
-    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/tomato-tracker/', expires: this.getExpDate()});
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
   }
 
   clearDaysCookie = () => {
@@ -252,12 +253,12 @@ class App extends Component {
 
   setCurrentClockCookie = () => {
     const { cookies } = this.props;
-    cookies.set('currentClockState', this.state.clock, { path: '/tomato-tracker/', expires: this.getExpDate()})
+    cookies.set('currentClockState', this.state.clock, { path: '/', expires: this.getExpDate()})
   }
 
   setSettingsCookie = () => {
     const { cookies } = this.props;
-    cookies.set('settings', this.state.settings, { path: '/tomato-tracker/', expires: this.getExpDate()});
+    cookies.set('settings', this.state.settings, { path: '/', expires: this.getExpDate()});
   }
 
   clearSettingsCookie = () => {
@@ -332,13 +333,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <Header alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie} clearDaysCookie={this.clearDaysCookie}/>
           <Container className="app-container" maxWidth="md">
-            <Header alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie} clearDaysCookie={this.clearDaysCookie}/>
-            <hr/>
             <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60} showSkipButton={this.state.settings.showSkipButton}/>
             <hr/>
             <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
           </Container>
+          <Footer/>
         </header>
         <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />
       </div>

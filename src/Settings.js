@@ -67,7 +67,7 @@ export default class Settings extends Component {
 
         return (
             <div>
-                <Button variant="outlined" color="" onClick={this.handleModalOpen}>Settings</Button>
+                <Button variant="contained" color="default" onClick={this.handleModalOpen}>Settings</Button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
                     <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
                     <div className={"modal-window"}>

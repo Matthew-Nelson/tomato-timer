@@ -1,0 +1,30 @@
+$startButtonColor: #1a9703;
+$stopButtonColor: #df443d;
+$otherButtonColor: #ededed;
+
+button {
+    span {
+        font-family: 'Source Code Pro', monospace;
+        font-weight: 600;
+    }
+    &.start {
+        color: white;
+        background-color: $startButtonColor;
+        &:hover {
+            background-color: darken( $startButtonColor, 5% );
+        }
+    }
+    &.stop {
+        color: white;
+        background-color: $stopButtonColor;
+        &:hover {
+            background-color: darken( $stopButtonColor, 5% );
+        }
+    }
+    &:not(.stop):not(.start) {
+        background-color: $otherButtonColor;
+        &:hover {
+            background-color: darken( $otherButtonColor, 3% );
+        }
+    }
+}

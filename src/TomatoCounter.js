@@ -62,7 +62,7 @@ export default class TomatoCounter extends Component {
         return (
 
             <div>
-                <h2>Pomodoros Log</h2>
+                <h2>Pomodoro Log</h2>
                 <div>
                     {daysArray}
                 </div>

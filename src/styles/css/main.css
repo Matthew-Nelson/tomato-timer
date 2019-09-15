@@ -1,6 +1,7 @@
 body {
-  background-color: #a9a9a9;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif; }
+  background-color: #d6d6d6;
+  font-family: 'Source Code Pro', monospace;
+  color: #333; }
   body h1,
   body #clock {
     font-size: 40px;
@@ -8,36 +9,72 @@ body {
     line-height: 1.04;
     letter-spacing: 0em; }
 
-.header {
-  display: flex;
-  justify-content: space-between; }
-  .header h1 {
-    margin-top: 0; }
-  .header .header-buttons {
-    display: flex; }
-    .header .header-buttons div:first-of-type {
-      margin-right: .5rem; }
-    .header .header-buttons div button {
-      min-width: 150px; }
-  @media only screen and (max-width: 767px) {
-    .header h1 {
+.header-container {
+  background-color: #d4433d;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12); }
+  @media only screen and (min-width: 768px) {
+    .header-container {
+      padding: 3rem 0; } }
+  @media only screen and (max-width: 768px) {
+    .header-container {
+      padding: 2rem 0; } }
+  .header-container .header {
+    display: flex;
+    justify-content: space-between; }
+    .header-container .header h1 {
       margin: 0;
-      align-self: center; }
-    .header .header-buttons {
-      flex-direction: column; }
-      .header .header-buttons div:first-of-type {
-        margin-right: 0;
-        margin-bottom: .5rem; }
-      .header .header-buttons div button {
-        min-width: 150px; } }
+      color: #ededed;
+      font-family: 'Pacifico', cursive; }
+    .header-container .header .header-buttons {
+      display: flex; }
+      .header-container .header .header-buttons div:first-of-type {
+        margin-right: .5rem; }
+      .header-container .header .header-buttons div button {
+        min-width: 150px; }
+    @media only screen and (max-width: 767px) {
+      .header-container .header h1 {
+        margin: 0;
+        align-self: center; }
+      .header-container .header .header-buttons {
+        flex-direction: column; }
+        .header-container .header .header-buttons div:first-of-type {
+          margin-right: 0;
+          margin-bottom: .5rem; }
+        .header-container .header .header-buttons div button {
+          min-width: 150px; } }
+    @media only screen and (max-width: 531px) {
+      .header-container .header {
+        flex-direction: column; }
+        .header-container .header h1 {
+          margin-bottom: 1rem;
+          text-align: center; }
+        .header-container .header .header-buttons button {
+          width: 100%; } }
+
+.footer-container {
+  padding: 3rem 0;
+  background-color: #ededed;
+  box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.2), inset 0px 2px 2px 0px rgba(0, 0, 0, 0.14), inset 0px 3px 1px -2px rgba(0, 0, 0, 0.12); }
+  .footer-container .footer {
+    display: flex;
+    justify-content: space-between; }
+    .footer-container .footer .external-links {
+      padding: 0;
+      display: flex; }
+      .footer-container .footer .external-links li {
+        list-style-type: none; }
+        .footer-container .footer .external-links li:not(:last-child) {
+          margin-right: 1rem; }
+        .footer-container .footer .external-links li a svg {
+          height: 1.5em;
+          width: 1.5em;
+          fill: #333; }
   @media only screen and (max-width: 531px) {
-    .header {
-      flex-direction: column; }
-      .header h1 {
-        margin-bottom: 1rem;
-        text-align: center; }
-      .header .header-buttons button {
-        width: 100%; } }
+    .footer-container {
+      padding: 1rem 0; }
+      .footer-container .footer {
+        flex-direction: column;
+        align-items: center; } }
 
 .clock-container {
   display: flex;
@@ -46,27 +83,34 @@ body {
   .clock-container #clock {
     display: inline-block;
     padding: 1rem;
-    font-size: 50px;
+    font-size: 70px;
     margin: 1rem 0; }
   .clock-container .clock-changer,
   .clock-container .clock-controls {
-    max-width: 767px;
     width: 100%;
     display: flex;
     justify-content: space-between; }
-  .clock-container .skip-to-end {
-    margin: 0;
-    border: 1px dotted grey;
-    padding: 1.5rem 1rem; }
-    .clock-container .skip-to-end p {
-      margin-top: 0; }
-    .clock-container .skip-to-end button {
-      display: block;
-      margin: 0 auto; }
+  .clock-container .skip-wrapper {
+    background-color: #ededed;
+    margin: 1rem 0 1.5rem 0; }
+    .clock-container .skip-wrapper .skip-to-end {
+      margin: 0;
+      padding: 1.5rem 1rem; }
+      .clock-container .skip-wrapper .skip-to-end p {
+        margin-top: 0;
+        text-align: center; }
+      .clock-container .skip-wrapper .skip-to-end button {
+        display: block;
+        margin: 0 auto; }
   @media only screen and (min-width: 532px) {
-    .clock-container .clock-changer button,
-    .clock-container .clock-controls button {
-      width: 30%; } }
+    .clock-container .clock-changer,
+    .clock-container .clock-controls {
+      margin: 1rem 0; }
+      .clock-container .clock-changer button,
+      .clock-container .clock-controls button {
+        width: 31%; }
+    .clock-container .skip-wrapper {
+      width: 90%; } }
   @media only screen and (max-width: 531px) {
     .clock-container .clock-changer,
     .clock-container .clock-controls {
@@ -133,7 +177,7 @@ body {
 .modal-window {
   width: 75vw;
   position: absolute;
-  background-color: gray;
+  background-color: #d6d6d6;
   top: 50px;
   left: 50px;
   padding: 2rem 4rem;
@@ -142,3 +186,24 @@ body {
 .app-container {
   padding-top: 2rem;
   padding-bottom: 2rem; }
+
+button span {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600; }
+
+button.start {
+  color: white;
+  background-color: #1a9703; }
+  button.start:hover {
+    background-color: #167e03; }
+
+button.stop {
+  color: white;
+  background-color: #df443d; }
+  button.stop:hover {
+    background-color: #db2f27; }
+
+button:not(.stop):not(.start) {
+  background-color: #ededed; }
+  button:not(.stop):not(.start):hover {
+    background-color: #e5e5e5; }

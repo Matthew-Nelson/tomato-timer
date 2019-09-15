@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ClockChanger from './ClockChanger.js';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 export default class Clock extends Component {
 
@@ -147,10 +148,12 @@ export default class Clock extends Component {
         var skipToEnd;
         if (this.props.showSkipButton) {
             skipToEnd = 
-                <div className={"skip-to-end"}>
-                    <p>For demonstration purposes, feel free to skip to the end of the timer</p>
-                    <Button variant="outlined" color="" onClick={this.skipToEnd}>Skip to end of Timer</Button>
-                </div>
+                <Paper className={"skip-wrapper"} elevation={4}>
+                    <div className={"skip-to-end"}>
+                        <p>For demonstration purposes, feel free to skip to the end of the timer</p>
+                        <Button variant="outlined" color="default" onClick={this.skipToEnd}>Skip to end of Timer</Button>
+                    </div>
+                </Paper>
         }
 
         return (
@@ -163,9 +166,9 @@ export default class Clock extends Component {
                 <h2 id={"clock"}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
                 
                 <div className={"clock-controls"}>
-                    <Button variant="outlined" color="" onClick={this.startClock}>Start</Button>
-                    <Button variant="outlined" color="" onClick={this.stopClock}>Stop</Button>
-                    <Button variant="outlined" color="" onClick={this.resetClock}>Reset</Button>
+                    <Button className={"start"} variant="contained" color="default" onClick={this.startClock}>Start</Button>
+                    <Button className={"stop"} variant="contained" color="default" onClick={this.stopClock}>Stop</Button>
+                    <Button variant="contained" color="default" onClick={this.resetClock}>Reset</Button>
                 </div>
 
                 {this.displayMessage()}
