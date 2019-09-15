@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
+
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#df443d',
+            light: '#df443d',
+            dark: '#df443d'
+        },
+    },
+});
 
 export default class Settings extends Component {
 
@@ -62,100 +80,149 @@ export default class Settings extends Component {
     render() {
 
         var alarmOptions = this.props.alarmSounds.map((option) => {
-            return <option key={option.id} value={option.url}>{option.name}</option>
+            return <MenuItem key={option.id} value={option.url}> {option.name}</MenuItem>
         })
 
         return (
             <div>
-                <Button variant="contained" color="default" onClick={this.handleModalOpen}>Settings</Button>
-                <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
-                    <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
-                    <div className={"modal-window"}>
-                        <form onSubmit={this.onSubmit} id="settings" >
-                            <p><strong>Custom Timer Times</strong></p>
-                            <div>
-                                <p>Pomodoro Time:</p>
-                                <input type="number" name="pomodoroTimeLengthMinutes" value={this.state.pomodoroTimeLengthMinutes} onChange={this.onChange} />
-                                <p>Short Break Time:</p>
-                                <input type="number" name="shortBreakTimeLengthMinutes" value={this.state.shortBreakTimeLengthMinutes} onChange={this.onChange}/>
-                                <p>Long Break Time:</p>
-                                <input type="number" name="longBreakTimeLengthMinutes" value={this.state.longBreakTimeLengthMinutes} onChange={this.onChange}/>
-                            </div>
-                            <p>---</p>
-                            <p><strong>Sound Picker</strong></p>
-                            <select name="alarmSoundUrl" onChange={this.onChange} value={this.state.alarmSoundUrl}>
-                                {alarmOptions}
-                            </select>
-                            <p>---</p>
-                            <p><strong>Adjust Volume</strong></p>
-                            <select name="alarmVolumePercent" onChange={this.onChange} value={this.state.alarmVolumePercent}>
-                                <option value="100">100%</option>
-                                <option value="75">75%</option>
-                                <option value="50">50%</option>
-                                <option value="25">25%</option>
-                                <option value="0">0%</option>
-                            </select>
-                            <p>---</p>
-                            
-                            <div>
-                               <p>Show breaks in log</p>
-                                <label>
-                                    <input
-                                    type="radio"
-                                    name="showBreaksInLog"
-                                    value={true}
-                                    checked={this.state.showBreaksInLog}
-                                    onChange={this.onChange}
-                                    />
-                                        Yes
-                                </label>
-                                <label>
-                                    <input
-                                    type="radio"
-                                    name="showBreaksInLog"
-                                    value={false}
-                                    checked={!this.state.showBreaksInLog}
-                                    onChange={this.onChange}
-                                    />
-                                        No
-                                </label>
-                            </div>
-                            
-                            <p>---</p>
+                <ThemeProvider theme={theme}>
+                    <Button variant="contained" color="default" onClick={this.handleModalOpen}>Settings</Button>
+                    <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
+                        <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
+                            <div className={"modal-window"}>
+                                <div className={"modal-inner-wrapper"}>
+                                    <form onSubmit={this.onSubmit} id="settings" >
+                                        <h2>Settings</h2>
+                                        <div className={"setting custom-times"}>
+                                            <p>Custom Timer Times</p>
+                                            <div className={"times-wrapper"}>
+                                                <TextField
+                                                    name="pomodoroTimeLengthMinutes"
+                                                    label="Pomodoro Minutes"
+                                                    type="number"
+                                                    value={this.state.pomodoroTimeLengthMinutes}
+                                                    onChange={this.onChange}
+                                                    variant="filled"
+                                                />
+                                                <TextField
+                                                    name="shortBreakTimeLengthMinutes"
+                                                    label="Short Break Minutes"
+                                                    type="number"
+                                                    value={this.state.shortBreakTimeLengthMinutes}
+                                                    onChange={this.onChange}
+                                                    variant="filled"
+                                                />
+                                                <TextField
+                                                    name="longBreakTimeLengthMinutes"
+                                                    label="Long Break Minutes"
+                                                    type="number"
+                                                    value={this.state.longBreakTimeLengthMinutes}
+                                                    onChange={this.onChange}
+                                                    variant="filled"
+                                                />
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div className={"setting sound-picker"}>
+                                            <p>Pick Alarm Sound</p>
+                                            <TextField
+                                                name="alarmSoundUrl"
+                                                select
+                                                label="Alarm Sound"
+                                                value={this.state.alarmSoundUrl}
+                                                onChange={this.onChange}
+                                                variant="filled"
+                                            >                                        
+                                                {alarmOptions}
+                                            </TextField>
+                                        </div>
+                                        <hr/>
+                                        <div className={"setting volume-adjust"}>
+                                            <p>Adjust Volume</p>
 
-                            <div>
-                                <p>Would you like to have the option to skip to the end of the timer? This should mainly be used for demonstration purposes. Checking 'Yes' will reveal a button upon naviagting back to the timer.</p>
-                                <label>
-                                    <input
-                                    type="radio"
-                                    name="showSkipButton"
-                                    value={true}
-                                    checked={this.state.showSkipButton}
-                                    onChange={this.onChange}
-                                    />
-                                        Yes
-                                </label>
-                                <label>
-                                    <input
-                                    type="radio"
-                                    name="showSkipButton"
-                                    value={false}
-                                    checked={!this.state.showSkipButton}
-                                    onChange={this.onChange}
-                                    />
-                                        No
-                                </label>
+                                            <TextField 
+                                                name="alarmVolumePercent"
+                                                select
+                                                label="Alarm Volume"
+                                                value={this.state.alarmVolumePercent}
+                                                onChange={this.onChange}
+                                                variant="filled"
+                                            >
+                                                <MenuItem key={100} value={100}>100</MenuItem>
+                                                <MenuItem key={75} value={75}>75</MenuItem>
+                                                <MenuItem key={50} value={50}>50</MenuItem>
+                                                <MenuItem key={25} value={25}>25</MenuItem>
+                                                <MenuItem key={0} value={0}>0</MenuItem>
+                                            </TextField>
+                                        </div>
+                                        <hr/>
+                                        <div className={"setting show-breaks"}>
+                                            <p>Show breaks in log</p>
+                                            <RadioGroup>
+                                                <FormControlLabel
+                                                    label="Yes"
+                                                    control={<Radio
+                                                        value={true}
+                                                        name={"showBreaksInLog"}
+                                                        checked={this.state.showBreaksInLog}
+                                                        onChange={this.onChange}
+                                                        color="primary"
+                                                    />}
+                                                />
+                                                <FormControlLabel
+                                                    label="No"
+                                                    control={<Radio
+                                                        value={false}
+                                                        name={"showBreaksInLog"}
+                                                        checked={!this.state.showBreaksInLog}
+                                                        onChange={this.onChange}
+                                                        color="primary"
+                                                    />}
+                                                />  
+                                            </RadioGroup>
+                                        </div>
+                                        <hr/>
+                                        <div className="setting show-skip-button">
+                                            <RadioGroup>
+                                            <p>Show Skip Button<br/>(For Demonstration Purposes)</p>
+                                                <FormControlLabel
+                                                    label="Yes"
+                                                    control={<Radio
+                                                        value={true}
+                                                        name={"showSkipButton"}
+                                                        checked={this.state.showSkipButton}
+                                                        onChange={this.onChange}
+                                                        color="primary"
+                                                    />}
+                                                />
+                                                <FormControlLabel
+                                                    label="No"
+                                                    control={<Radio
+                                                        value={false}
+                                                        name={"showSkipButton"}
+                                                        checked={!this.state.showSkipButton}
+                                                        onChange={this.onChange}
+                                                        color="primary"
+                                                    />}
+                                                />  
+                                            </RadioGroup>
+                                        </div>
+                                        <hr/>
+                                        <div className="button-wrapper"> 
+                                            <Button className={"submit"} color="default" variant="outlined" type="submit" value="submit">Save Settings</Button>
+                                            <Button className={"clear"} color="default" variant="outlined" onClick={this.restoreDefaults}>Restore Defaults</Button>
+                                        </div>
+                                        <hr/>
+                                        <div className="button-wrapper lower">
+                                            <Button className={"stop"} color="default" variant="contained" onClick={this.props.clearDaysCookie}>Clear Pomodoro Log</Button>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
                             </div>
-
-                            <p>---</p>
-                            <button type="submit" value="submit">Save Settings</button>
-                            <p>---</p>
-                        </form>
-                        <button onClick={this.restoreDefaults}>Restore Defaults</button>
-                        <button onClick={this.props.clearDaysCookie}>Clear Entire Log</button>
-                    </div>
-                </Fade>
-                </Modal>
+                        </Fade>
+                    </Modal>
+                </ThemeProvider>
             </div>
         )
     }

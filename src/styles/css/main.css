@@ -175,13 +175,56 @@ body {
   display: none; }
 
 .modal-window {
-  width: 75vw;
-  position: absolute;
   background-color: #d6d6d6;
-  top: 50px;
-  left: 50px;
-  padding: 2rem 4rem;
-  outline: 0; }
+  outline: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 768px;
+  max-width: 85%;
+  min-height: 450px;
+  max-height: 95%;
+  padding: 0 1rem 1.5rem;
+  overflow: auto; }
+  @media only screen and (max-width: 531px) {
+    .modal-window {
+      max-height: calc(95% - 50px); } }
+
+#settings .MuiTextField-root {
+  width: 32%; }
+  @media only screen and (max-width: 531px) {
+    #settings .MuiTextField-root {
+      width: 100%;
+      margin-bottom: .5rem; } }
+
+#settings .custom-times .times-wrapper {
+  display: flex;
+  justify-content: space-between; }
+  @media only screen and (max-width: 531px) {
+    #settings .custom-times .times-wrapper {
+      flex-direction: column; } }
+
+#settings button {
+  width: 49%; }
+  @media only screen and (max-width: 531px) {
+    #settings button {
+      width: 100%;
+      margin-bottom: .5rem; } }
+
+#settings .button-wrapper {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between; }
+  #settings .button-wrapper.lower {
+    justify-content: center;
+    padding-bottom: 0; }
+  @media only screen and (max-width: 531px) {
+    #settings .button-wrapper {
+      flex-direction: column;
+      padding: .5rem 0 0; }
+      #settings .button-wrapper.lower button {
+        margin-bottom: 0; } }
 
 .app-container {
   padding-top: 2rem;
@@ -197,13 +240,19 @@ button.start {
   button.start:hover {
     background-color: #167e03; }
 
+button.submit {
+  border-color: #1a9703; }
+
 button.stop {
   color: white;
   background-color: #df443d; }
   button.stop:hover {
     background-color: #db2f27; }
 
-button:not(.stop):not(.start) {
+button.clear {
+  border-color: #df443d; }
+
+button:not(.stop):not(.start):not(.submit):not(.clear) {
   background-color: #ededed; }
-  button:not(.stop):not(.start):hover {
+  button:not(.stop):not(.start):not(.submit):not(.clear):hover {
     background-color: #e5e5e5; }

@@ -1,9 +1,24 @@
 .modal-window {
-    width: 75vw;
-    position: absolute;
+
     background-color: #d6d6d6;
-    top: 50px;
-    left: 50px;
-    padding: 2rem 4rem;
     outline: 0;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 768px;
+    max-width: 85%;
+
+    min-height: 450px;
+    max-height: 95%;
+
+    padding: 0 1rem 1.5rem;
+
+    overflow: auto;
+
+    @media only screen and (max-width: 531px) {
+        max-height: calc(95% - 50px);
+    }
 }

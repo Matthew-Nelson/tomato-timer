@@ -1,0 +1,53 @@
+#settings {
+
+    .MuiTextField-root {
+        width: 32%;
+        @media only screen and (max-width: 531px) {
+            width: 100%;
+            margin-bottom: .5rem;
+        }
+    }
+
+    .custom-times  {
+        .times-wrapper {
+            display: flex;
+            justify-content: space-between;
+            @media only screen and (max-width: 531px) {
+                flex-direction: column;
+            }
+        }
+    }
+
+    button {
+        width: 49%;
+        @media only screen and (max-width: 531px) {
+            width: 100%;
+            margin-bottom: .5rem;
+        }
+    }
+
+    .button-wrapper {
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+
+        &.lower {
+            justify-content: center;
+            padding-bottom: 0;
+        }
+
+        @media only screen and (max-width: 531px) {
+            flex-direction: column;
+            padding: .5rem 0 0;
+
+            &.lower {
+                button {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+
+    
+}

@@ -103,7 +103,7 @@ export default class Clock extends Component {
     }
 
     changeTitle = (showTimeInTitle) => {
-        var title = 'Pomodoro';
+        var title = 'TomatoTracker';
 
         if (showTimeInTitle === false) {
             document.title = title;
