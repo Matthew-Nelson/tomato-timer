@@ -20,6 +20,12 @@
                         height: 1.5em;
                         width: 1.5em;
                         fill: #333;
+                        transition: all .1s linear;
+                    }
+                    &:hover {
+                        svg {
+                            fill: #df443d;
+                        }
                     }
                 }
             }

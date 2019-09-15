@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
+import { FaGithub } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaLaptopCode } from 'react-icons/fa';
 
 
 export default class FAQ extends Component {
@@ -70,11 +73,11 @@ export default class FAQ extends Component {
                             </ol>
 
                             <p>Find me on the following platforms:</p>
-                            <ul>
-                                <li><a href="https://github.com/Matthew-Nelson" target="_blank" rel="noopener noreferrer">My Github</a></li>
-                                <li><a href="https://www.linkedin.com/in/matthewbnelson/" target="_blank" rel="noopener noreferrer">My 
+                            <ul className={'external-links'}>
+                                <li><a href="https://github.com/Matthew-Nelson" target="_blank" rel="noopener noreferrer"><FaGithub/>My Github</a></li>
+                                <li><a href="https://www.linkedin.com/in/matthewbnelson/" target="_blank" rel="noopener noreferrer"><FaLinkedin/>My 
                                 LinkedIn</a></li>
-                                <li><a href="https://mattnelson.dev/" target="_blank" rel="noopener noreferrer">My personal site</a></li>
+                                <li><a href="https://mattnelson.dev/" target="_blank" rel="noopener noreferrer"><FaLaptopCode/>My personal site</a></li>
                             </ul>
 
                         </div>

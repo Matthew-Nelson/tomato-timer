@@ -68,7 +68,10 @@ body {
         .footer-container .footer .external-links li a svg {
           height: 1.5em;
           width: 1.5em;
-          fill: #333; }
+          fill: #333;
+          transition: all .1s linear; }
+        .footer-container .footer .external-links li a:hover svg {
+          fill: #df443d; }
   @media only screen and (max-width: 531px) {
     .footer-container {
       padding: 1rem 0; }
@@ -190,6 +193,26 @@ body {
   @media only screen and (max-width: 531px) {
     .modal-window {
       max-height: calc(95% - 50px); } }
+  .modal-window a {
+    transition: all .1s linear; }
+    .modal-window a:visited {
+      color: #333; }
+    .modal-window a:hover {
+      color: #df443d; }
+    .modal-window a svg {
+      height: 1.5em;
+      width: 1.5em;
+      fill: #333;
+      transition: all .1s linear;
+      margin-right: 5px;
+      margin-bottom: -6px; }
+    .modal-window a:hover svg {
+      fill: #df443d; }
+  .modal-window .external-links {
+    list-style-type: none;
+    padding-left: 5px; }
+    .modal-window .external-links li {
+      margin-bottom: 6px; }
 
 #settings .MuiTextField-root {
   width: 32%; }
