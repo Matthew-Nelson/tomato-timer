@@ -1,4 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#df443d',
+            light: '#df443d',
+            dark: '#df443d'
+        },
+    },
+});
 
 export default class CommentSection extends Component {
 
@@ -35,20 +49,30 @@ export default class CommentSection extends Component {
         if (this.state.editingComment === true) {
             commentSection = 
             <div>
-                <textarea placeholder={'add comments about how you spent your time'} value={this.state.comment} onChange={this.udpateCommentState}></textarea>
-                <button onClick={this.submitComment}>Submit</button>
+                <ThemeProvider theme={theme}>
+                    <TextField
+                        label="Comments"
+                        value={this.state.comment}
+                        onChange={this.udpateCommentState}
+                        variant="filled"
+                        placeholder="Add comments about how you spent your time"
+                        multiline
+                        style={{marginBottom: '1rem', width: '100%'}}
+                    />
+                    <Button variant="outlined" className="submit" onClick={this.submitComment} style={{width: '100%'}}>Submit</Button>
+                </ThemeProvider>
             </div>
         } else {
             commentSection = 
             <div>
-                <p>Comment:</p>
                 <p>{this.props.comment}</p>
-                <button onClick={this.openCommentToEdit}>Edit Comment</button>
+                <Button variant="contained" onClick={this.openCommentToEdit} style={{width: '100%', backgroundColor: '#d6d6d6'}}>Edit Comment</Button>
             </div>
         }
 
         return (
             <div>
+                <p style={{marginTop: '0'}}><strong>Comments:</strong></p>
                 {commentSection}
             </div>
         )

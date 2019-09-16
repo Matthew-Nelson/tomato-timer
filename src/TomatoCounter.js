@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CommentSection from './CommentSection.js';
+import Button from '@material-ui/core/Button';
 import tomatoImg from './assets/tomato.png';
 import coffeeImg from './assets/coffee.png';
 
@@ -29,22 +30,18 @@ export default class TomatoCounter extends Component {
                             <img src={tomatoImg} className={'tomato-image'} alt="Tomato Icon"/>
                             <img src={coffeeImg} className={'coffee-image'} alt="Coffee Icon"/>
                             <div className={"element-pop-up"}>
-                                <div>
-                                    <p style={{textAlign: 'center'}}>{element.minutes}<br/>
-                                    minutes
-                                    </p>
-                                </div>
-                                <div>
-                                    <button onClick={this.props.deleteElement.bind(this, day.id, element.id)} className="rm-button">Delete Element</button>
-                                </div>
+                                <CommentSection comment={element.comment} editingComment={element.editingComment} editLogComment={this.editLogComment.bind(this, day.id, element.id)}/>
+                                <hr style={{marginTop: '15px'}}/>
                                 <div className="log-info">
+                                    <p><strong>Details:</strong></p>
+                                    <p>{element.minutes} minute timer</p>
                                     <p>Time Started: {element.timeStarted}</p>
                                     <p>Time Completed: {element.timeStarted}</p>
                                     <p>Date Completed: {element.dateCompleted}</p>
                                 </div>
-                                <div>
-                                    <CommentSection comment={element.comment} editingComment={element.editingComment} editLogComment={this.editLogComment.bind(this, day.id, element.id)}/>
-                                </div>
+                                <hr style={{margin: '12px 0'}}/>
+                                {/* <hr/> */}
+                                <Button onClick={this.props.deleteElement.bind(this, day.id, element.id)} className="rm-button clear" variant="outlined" style={{width: '100%'}} >Delete Element</Button>
                             </div>
                         </div>
                     </div>
@@ -54,14 +51,16 @@ export default class TomatoCounter extends Component {
             return (
                 <div className={`day ${(day.timeElements.some( (element) => element.isTomato) ) ? 'has-tomatoes' : 'no-tomatoes'} ${( this.props.showBreaksInLog ) ? 'show-breaks' : 'hide-breaks'}`} key={day.id}>
                     <h3 className={'date'}>{day.date}</h3>
-                    {elementsArray}
+                    <div className={'time-elements-container'}>
+                        {elementsArray}
+                    </div>
                 </div>
             )
         })
 
         return (
 
-            <div>
+            <div className="pomodoro-log" >
                 <h2>Pomodoro Log</h2>
                 <div>
                     {daysArray}
