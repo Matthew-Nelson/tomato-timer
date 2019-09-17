@@ -1,5 +1,5 @@
 body {
-  background-color: #d6d6d6;
+  background-color: #ededed;
   font-family: 'Source Code Pro', monospace;
   color: #333; }
   body h1,
@@ -11,7 +11,9 @@ body {
 
 .header-container {
   background-color: #d4433d;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12); }
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 2; }
   @media only screen and (min-width: 768px) {
     .header-container {
       padding: 3rem 0; } }
@@ -131,28 +133,26 @@ body {
   display: inline-block; }
   .single-element-wrapper:hover .element-pop-up {
     display: block; }
-  .single-element-wrapper.hide-element {
-    display: none; }
 
 .time-element {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative; }
-  .time-element.break .coffee-image {
-    height: 100%; }
+  .time-element .coffee-image,
+  .time-element .tomato-image {
+    width: 100%; }
   .time-element.break .tomato-image {
     display: none; }
   .time-element.tomato .coffee-image {
     display: none; }
-  .time-element.tomato .tomato-image {
-    width: 100%; }
   .time-element .element-pop-up {
+    display: block;
     display: none;
     position: absolute;
     width: 250px;
     background-color: #ededed;
-    top: 105%;
+    bottom: 90%;
     border-radius: 4px;
     padding: 1rem;
     z-index: 2;
@@ -162,11 +162,11 @@ body {
       content: "\A";
       border-style: solid;
       border-width: 12px;
-      transform: rotate(90deg);
+      transform: rotate(-90deg);
       border-color: transparent #ededed transparent transparent;
       position: absolute;
       left: calc(50% - 12px);
-      top: -22px; }
+      bottom: -22px; }
     .time-element .element-pop-up .log-info p {
       margin: 0 0 0.5rem; }
 
@@ -189,6 +189,54 @@ body {
 
 .day.hide-day, .day.no-tomatoes.hide-breaks {
   display: none; }
+
+@media only screen and (min-width: 768px) {
+  .single-element-wrapper.show-element:nth-of-type(8n+1) .element-pop-up {
+    left: -40%; }
+    .single-element-wrapper.show-element:nth-of-type(8n+1) .element-pop-up:after {
+      left: calc(30% - 12px); }
+  .single-element-wrapper.show-element:nth-of-type(8n+8) .element-pop-up {
+    right: -40%; }
+    .single-element-wrapper.show-element:nth-of-type(8n+8) .element-pop-up:after {
+      left: calc(70% - 12px); } }
+
+@media only screen and (max-width: 850px) {
+  .single-element-wrapper.show-element:nth-of-type(8n+1) .element-pop-up:after {
+    left: calc(30% - 30px); }
+  .single-element-wrapper.show-element:nth-of-type(8n+8) .element-pop-up:after {
+    left: calc(70% + 6px); } }
+
+@media only screen and (max-width: 767px) {
+  .single-element-wrapper.show-element:nth-of-type(4n+1) .element-pop-up {
+    left: -17%; }
+    .single-element-wrapper.show-element:nth-of-type(4n+1) .element-pop-up:after {
+      left: calc(44% - 30px); }
+  .single-element-wrapper.show-element:nth-of-type(4n+4) .element-pop-up {
+    right: -17%; }
+    .single-element-wrapper.show-element:nth-of-type(4n+4) .element-pop-up:after {
+      left: calc(56% + 6px); } }
+
+@media only screen and (max-width: 650px) {
+  .single-element-wrapper.show-element:nth-of-type(4n+1) .element-pop-up:after {
+    left: calc(37% - 30px); }
+  .single-element-wrapper.show-element:nth-of-type(4n+4) .element-pop-up:after {
+    left: calc(64% + 6px); } }
+
+@media only screen and (max-width: 531px) {
+  .single-element-wrapper.show-element:nth-of-type(2n+1) .element-pop-up {
+    left: 0; }
+    .single-element-wrapper.show-element:nth-of-type(2n+1) .element-pop-up:after {
+      left: calc(44% - 30px); }
+  .single-element-wrapper.show-element:nth-of-type(2n+2) .element-pop-up {
+    right: 0; }
+    .single-element-wrapper.show-element:nth-of-type(2n+2) .element-pop-up:after {
+      left: calc(64% - 6px); } }
+
+@media only screen and (max-width: 440px) {
+  .single-element-wrapper.show-element:nth-of-type(2n+1) .element-pop-up:after {
+    left: calc(37% - 30px); }
+  .single-element-wrapper.show-element:nth-of-type(2n+2) .element-pop-up:after {
+    left: calc(64% + 6px); } }
 
 .modal-window {
   background-color: #d6d6d6;

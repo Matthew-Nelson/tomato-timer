@@ -334,11 +334,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Header alarmSounds={this.alarmSounds} defaultSettings={this.defaultSettings} settings={this.state.settings} updateSettings={this.updateSettings} clearSettingsCookie={this.clearSettingsCookie} restoreCurrentClockCookie={this.restoreCurrentClockCookie} clearDaysCookie={this.clearDaysCookie}/>
-          <Container className="app-container" maxWidth="md">
-            <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60} showSkipButton={this.state.settings.showSkipButton}/>
-            <hr/>
-            <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
-          </Container>
+          <div style={{backgroundColor: '#d6d6d6'}}>
+            <Container className="app-container" maxWidth="md">
+              <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60} showSkipButton={this.state.settings.showSkipButton}/>
+              <hr/>
+              <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
+            </Container>
+          </div>
           <Footer/>
         </header>
         <audio id="alarm-audio" src={this.state.settings.alarmSoundUrl} type="audio/mpeg" />

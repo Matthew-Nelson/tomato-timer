@@ -5,19 +5,18 @@
             display: block;
         }
     }
-    &.hide-element {
-        display: none;
-    }
 }
 .time-element {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    .coffee-image,
+    .tomato-image {
+        width: 100%;
+    }
+
     &.break {
-        .coffee-image {
-            height: 100%;
-        }
         .tomato-image {
             display: none;
         }
@@ -26,17 +25,14 @@
         .coffee-image {
             display: none;
         }
-        .tomato-image {
-            width: 100%;
-        }
     }
     .element-pop-up {
-        // display: block;
+        display: block;
         display: none;
         position: absolute;
         width: 250px;
         background-color: #ededed;
-        top: 105%;
+        bottom: 90%;
         border-radius: 4px;
         padding: 1rem;
         z-index: 2;
@@ -46,11 +42,11 @@
             content:"\A";
             border-style: solid;
             border-width: 12px;
-            transform: rotate(90deg);
+            transform: rotate(-90deg);
             border-color: transparent #ededed transparent transparent;
             position: absolute;
             left: calc(50% - 12px);
-            top: -22px;
+            bottom: -22px;
         }
 
         .log-info {
@@ -93,4 +89,117 @@
         display: none;
     }
 
+}
+
+.single-element-wrapper {
+    &.show-element {
+        @media only screen and (min-width: 768px) {
+            &:nth-of-type(8n+1) {
+                .element-pop-up {
+                    left: -40%;
+                    &:after {
+                        left: calc(30% - 12px);
+                    }
+                }
+                
+            }
+            &:nth-of-type(8n+8) {
+                .element-pop-up {
+                    right: -40%;
+                    &:after {
+                        left: calc(70% - 12px);
+                    }
+                }
+            }       
+        }
+
+        @media only screen and (max-width: 850px) {
+            &:nth-of-type(8n+1) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(30% - 30px);
+                    }
+                }
+            }
+            &:nth-of-type(8n+8) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(70% + 6px);
+                    }
+                }
+            }       
+        }
+
+        @media only screen and (max-width: 767px) {
+            &:nth-of-type(4n+1) {
+                .element-pop-up {
+                    left: -17%;
+                    &:after {
+                        left: calc(44% - 30px);
+                    }
+                }
+            }
+            &:nth-of-type(4n+4) {
+                .element-pop-up {
+                    right: -17%;
+                    &:after {
+                        left: calc(56% + 6px);
+                    }
+                }
+            }       
+        }
+
+        @media only screen and (max-width: 650px) {
+            &:nth-of-type(4n+1) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(37% - 30px);
+                    }
+                }
+            }
+            &:nth-of-type(4n+4) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(64% + 6px);
+                    }
+                }
+            }       
+        }
+
+        @media only screen and (max-width: 531px) {
+            &:nth-of-type(2n+1) {
+                .element-pop-up {
+                    left: 0;
+                    &:after {
+                        left: calc(44% - 30px);
+                    }
+                }
+            }
+            &:nth-of-type(2n+2) {
+                .element-pop-up {
+                    right: 0;
+                    &:after {
+                        left: calc(64% - 6px);
+                    }
+                }
+            }  
+        }
+
+        @media only screen and (max-width: 440px) {
+            &:nth-of-type(2n+1) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(37% - 30px);
+                    }
+                }
+            }
+            &:nth-of-type(2n+2) {
+                .element-pop-up {
+                    &:after {
+                        left: calc(64% + 6px);
+                    }
+                }
+            }       
+        }
+    }
 }
