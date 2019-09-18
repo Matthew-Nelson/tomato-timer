@@ -60,10 +60,16 @@ export default class TomatoCounter extends Component {
             )
         })
 
+        var emptyMessage;
+        if (this.props.daysWithWork.length === 0) {
+            emptyMessage = <p>(Complete a pomodoro and a log of your finished time segments will be stored here)</p>
+        }
+
         return (
 
             <div className="pomodoro-log" >
                 <h2>Pomodoro Log</h2>
+                {emptyMessage}
                 <div>
                     {daysArray}
                 </div>

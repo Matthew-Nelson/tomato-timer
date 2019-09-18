@@ -21,18 +21,18 @@ export default class Clock extends Component {
         if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {
             message = "Start the clock and get to work!";
         } else if (this.state.isRunning === false && this.props.timerType === 'pomodoro' && this.props.startSeconds === this.state.secondsElapsed) {
-            message = "Good job! You made it to the break. Select whether you are going to take another break."
+            message = <span><p>You completed your pomodoro! Good Job!</p><p>Select whether you want to take a short or a long break.</p></span>
         } else if (this.state.isRunning === true && this.props.timerType === 'pomodoro') {
             message = "You're on the clock, keep focused on the task at hand!"
         } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro' && this.props.startSeconds !== this.state.secondsElapsed) {
             message = "Start the clock and take your well earned break!"
         } else if (this.state.isRunning === false && this.props.timerType !== 'pomodoro' && this.props.startSeconds === this.state.secondsElapsed) {
-            message = "Select whether you are headed back to a 'pomodoro' or if you want to take a longer break."
+            message = "Click the pomodoro button above and start your next segment of focused work."
         } else if (this.state.isRunning === true && this.props.timerType !== 'pomodoro') {
-            message = "You're on your break. Get up, stretch, grab a snack or water if needed and relax!"
+            message = "You're on your break! Get up, stretch, grab a snack or water if needed and relax!"
         }
-
-        return <h3>{message}</h3>
+        
+        return <h3 className="encouragement">{message}</h3>
     }
 
     changeClock = (newLength, newTimerType) => {

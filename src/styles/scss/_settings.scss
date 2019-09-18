@@ -8,6 +8,10 @@
         }
     }
 
+    .MuiFormGroup-root {
+        display: block;
+    }
+
     .custom-times  {
         .times-wrapper {
             display: flex;
@@ -15,6 +19,45 @@
             @media only screen and (max-width: 531px) {
                 flex-direction: column;
             }
+        }
+    }
+
+    .breaks-skip-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        .show-breaks,
+        .show-skip-button {
+            width: 50%;
+            p {
+                text-align: center;
+                display: block;
+            }
+            .MuiFormGroup-root {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        @media only screen and (max-width: 531px) {
+            flex-direction: column;
+            align-items: center;
+            hr {
+                width: 100%;
+            }
+        }
+    }
+
+    .setting {
+        p {
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
+    }
+
+    hr.add-margin {
+        @media only screen and (min-width: 532px) {
+            margin-top: 1rem;
         }
     }
 
@@ -34,11 +77,17 @@
         &.lower {
             justify-content: center;
             padding-bottom: 0;
+            
+            button {
+                width: 100%;
+            }
         }
 
         @media only screen and (max-width: 531px) {
             flex-direction: column;
             padding: .5rem 0 0;
+
+            
 
             &.lower {
                 button {
@@ -48,6 +97,21 @@
         }
     }
 
-
+    .sound-settings {
+        .inner-wrapper {
+            display: flex;
+            justify-content: space-between;
+            > * {
+                width: 32%;
+            }
+            @media only screen and (max-width: 531px) {
+                flex-direction: column;
+                padding: .5rem 0 0;
     
+                > * {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

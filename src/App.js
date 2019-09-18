@@ -178,13 +178,14 @@ class App extends Component {
       this.createNewDayWithElement(newTimeElement.dateCompleted, newTimeElement);
     }
     
-    var audio = document.getElementById("alarm-audio");
-    if (audio) {
-      audio.play();
-      console.log(audio);
-    } else {
-      console.log('audio not loaded?');
-      console.log(audio);
+    var promise = document.querySelector('#alarm-audio').play();
+    if (promise !== undefined) {
+      promise.catch(error => {
+        this.setAudioVolume();
+        console.log(error);
+      }).then(() => {
+        // Auto-play started
+      });
     }
     
 
