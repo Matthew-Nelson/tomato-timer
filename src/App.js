@@ -48,7 +48,7 @@ class App extends Component {
       alarmSoundUrl: '/tomato-tracker/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
-      showBreaksInLog: true,
+      showBreaksInLog: false,
       showSkipButton: true
     }
 

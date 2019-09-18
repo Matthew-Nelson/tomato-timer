@@ -279,7 +279,8 @@ body {
     .modal-window {
       max-height: calc(90%); } }
   .modal-window a {
-    transition: all .1s linear; }
+    transition: all .1s linear;
+    color: #333; }
     .modal-window a:visited {
       color: #333; }
     .modal-window a:hover {
