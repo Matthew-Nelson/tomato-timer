@@ -38,7 +38,7 @@ export default class FAQ extends Component {
             <div>
                 <Button variant="contained" color="default" onClick={this.handleModalOpen}>More Info</Button>
                 <Modal open={this.state.modalOpen} onClose={this.handleModalClose} >
-                    <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
+                    <Fade in={this.state.modalOpen} timeout={ {enter: 500, exit: 500} }>
                         <div className={'modal-window'}>
                             <div className={"modal-inner-wrapper"}>
                                 <Fab className="modal-close" onClick={this.handleModalClose}>
@@ -88,6 +88,7 @@ export default class FAQ extends Component {
                                     LinkedIn</a></li>
                                     <li><a href="https://mattnelson.dev/" target="_blank" rel="noopener noreferrer"><FaLaptopCode/>My personal site</a></li>
                                 </ul>
+                                <br/>
                             </div>
                         </div>
                     </Fade>

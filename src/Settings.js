@@ -70,17 +70,18 @@ export default class Settings extends Component {
         }, () => {
             this.props.clearSettingsCookie();
             this.props.restoreCurrentClockCookie();
+            this.handleModalClose();
         })
     }
 
     testAlarmSound = () => {
-        var promise = document.querySelector('#alarm-audio').play();
-        if (promise !== undefined) {
-            promise.catch(error => {
-                // Auto-play was prevented
-                console.log(error);
-            }).then(() => {
-                // Auto-play started
+        var playPromise = document.querySelector('#alarm-audio').play();
+        if (playPromise !== undefined) {
+            playPromise.then(function() {
+              // Automatic playback started!
+            }).catch(function(error) {
+              // Automatic playback failed.
+              // Show a UI element to let the user manually start playback.
             });
         }
     }
@@ -97,6 +98,11 @@ export default class Settings extends Component {
         })
     };
 
+    clearDaysCookie = () => {
+        this.props.clearDaysCookie();
+        this.handleModalClose();
+    }
+
     render() {
 
         var alarmOptions = this.props.alarmSounds.map((option) => {
@@ -108,7 +114,7 @@ export default class Settings extends Component {
                 <ThemeProvider theme={theme}>
                     <Button variant="contained" color="default" onClick={this.handleModalOpen}>Settings</Button>
                     <Modal open={this.state.modalOpen} onClose={this.handleModalClose}>
-                        <Fade in={this.state.modalOpen} timeout={ {enter: 500} }>
+                        <Fade in={this.state.modalOpen} timeout={ {enter: 500, exit: 500} }>
                             <div className={"modal-window"}>
                                 <div className={"modal-inner-wrapper"}>
                                     <Fab className="modal-close" onClick={this.handleModalClose}>
@@ -242,8 +248,9 @@ export default class Settings extends Component {
                                         </div>
                                         <hr/>
                                         <div className="button-wrapper lower">
-                                            <Button className={"stop"} color="default" variant="contained" onClick={this.props.clearDaysCookie}>Clear Pomodoro Log</Button>
+                                            <Button className={"stop"} color="default" variant="contained" onClick={this.clearDaysCookie}>Clear Pomodoro Log</Button>
                                         </div>
+                                        <br/>
                                         
                                     </form>
                                 </div>

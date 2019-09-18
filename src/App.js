@@ -45,7 +45,7 @@ class App extends Component {
       longBreakTimeLengthMinutes: 10,
       shortBreakTimeLengthMinutes: 5,
 
-      alarmSoundUrl: '/static/media/ship-bell.be4257c1.mp3',
+      alarmSoundUrl: '/tomato-tracker/static/media/ship-bell.be4257c1.mp3',
       alarmVolumePercent: 100,
 
       showBreaksInLog: true,
@@ -95,7 +95,7 @@ class App extends Component {
 
   setDaysCookie = () => {
     const { cookies } = this.props;
-    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearDaysCookie = () => {
@@ -180,12 +180,18 @@ class App extends Component {
     
     var promise = document.querySelector('#alarm-audio').play();
     if (promise !== undefined) {
-      promise.catch(error => {
-        this.setAudioVolume();
-        console.log(error);
-      }).then(() => {
-        // Auto-play started
-      });
+      var playPromise = document.querySelector('#alarm-audio').play();
+      if (playPromise !== undefined) {
+        playPromise.then( () => {
+          // Automatic playback started!
+        }).catch( (error) => {
+          // Automatic playback failed.
+          // Show a UI element to let the user manually start playback.
+          this.setState({
+            supportsAudio: false
+          })
+        });
+      }
     }
     
 
@@ -254,12 +260,12 @@ class App extends Component {
 
   setCurrentClockCookie = () => {
     const { cookies } = this.props;
-    cookies.set('currentClockState', this.state.clock, { path: '/', expires: this.getExpDate()})
+    cookies.set('currentClockState', this.state.clock, { path: '/tomato-tracker/', expires: this.getExpDate()})
   }
 
   setSettingsCookie = () => {
     const { cookies } = this.props;
-    cookies.set('settings', this.state.settings, { path: '/', expires: this.getExpDate()});
+    cookies.set('settings', this.state.settings, { path: '/tomato-tracker/', expires: this.getExpDate()});
   }
 
   clearSettingsCookie = () => {
@@ -330,6 +336,14 @@ class App extends Component {
 
   render() {
     
+    var audioFailure
+    if (this.state.supportsAudio === false) {
+      audioFailure = 
+        <div>
+          <p style={{textAlign: 'center'}}>Audio fialed on this device for some reason. Please navigate to the settings and save a new sound, adjust your volume, or simply press 'test alarm' button. This will explicitly allow audio playback on your device.</p>
+        </div>
+    }
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -337,6 +351,7 @@ class App extends Component {
           <div style={{backgroundColor: '#d6d6d6'}}>
             <Container className="app-container" maxWidth="md">
               <Clock startSeconds={this.state.clock.startSeconds} timerType={this.state.clock.timerType} passVarsUp={this.changeClockFromVars} finishTimer={this.finishTimer} pomodoroTimeLengthSeconds={this.state.settings.pomodoroTimeLengthMinutes*60} shortBreakTimeLengthSeconds={this.state.settings.shortBreakTimeLengthMinutes*60} longBreakTimeLengthSeconds={this.state.settings.longBreakTimeLengthMinutes*60} showSkipButton={this.state.settings.showSkipButton}/>
+              {audioFailure}
               <hr/>
               <TomatoCounter daysWithWork={this.state.daysWithWork} deleteElement={this.deleteElement} editLogComment={this.editLogComment} showBreaksInLog={this.state.settings.showBreaksInLog}/>
             </Container>
