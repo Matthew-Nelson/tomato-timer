@@ -89,7 +89,7 @@ body {
     display: inline-block;
     padding: 1rem;
     font-size: 70px;
-    margin: 1rem 0; }
+    margin: 6rem 0; }
   .clock-container .clock-changer,
   .clock-container .clock-controls {
     width: 100%;
@@ -109,6 +109,24 @@ body {
         margin: 0 auto; }
   .clock-container .encouragement {
     text-align: center; }
+  .clock-container .progress-circles-wrapper {
+    position: relative; }
+    .clock-container .progress-circles-wrapper .circle {
+      position: absolute;
+      width: 120% !important;
+      height: auto !important;
+      left: -23px;
+      top: 2px; }
+      .clock-container .progress-circles-wrapper .circle.dynamic {
+        z-index: 2; }
+        .clock-container .progress-circles-wrapper .circle.dynamic .MuiCircularProgress-svg {
+          color: #1a9703; }
+      .clock-container .progress-circles-wrapper .circle.background {
+        z-index: 1; }
+        .clock-container .progress-circles-wrapper .circle.background .MuiCircularProgress-svg {
+          color: #cbcbcb; }
+      .clock-container .progress-circles-wrapper .circle circle {
+        stroke-width: 1.5; }
   @media only screen and (min-width: 532px) {
     .clock-container .clock-changer,
     .clock-container .clock-controls {
@@ -128,6 +146,10 @@ body {
         .clock-container .clock-changer button:not(:last-of-type),
         .clock-container .clock-controls button:not(:last-of-type) {
           margin-bottom: .5rem; }
+    .clock-container .clock-controls {
+      margin-top: 1rem; }
+    .clock-container .clock-changer {
+      margin-bottom: 1rem; }
     .clock-container .skip-to-end button {
       width: 100%; } }
 

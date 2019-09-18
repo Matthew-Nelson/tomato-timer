@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClockChanger from './ClockChanger.js';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Clock extends Component {
 
@@ -161,10 +162,14 @@ export default class Clock extends Component {
                 
                 <ClockChanger changeClock={this.changeClock} pomodoroTimeLengthSeconds={this.props.pomodoroTimeLengthSeconds} shortBreakTimeLengthSeconds={this.props.shortBreakTimeLengthSeconds} longBreakTimeLengthSeconds={this.props.longBreakTimeLengthSeconds}/>
                 
+
+                <div className="progress-circles-wrapper">
+                    <CircularProgress className="circle dynamic" variant="static" color="primary" value={(this.state.secondsElapsed / this.props.startSeconds) * 100} />
+                    <CircularProgress className="circle background" variant="static" color="secondary" value={100-((this.state.secondsElapsed / this.props.startSeconds) * 100 * -1)} />
+                    <h2 id={"clock"}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
+                </div>
                 
 
-                <h2 id={"clock"}>{this.formatSeconds(this.props.startSeconds - this.state.secondsElapsed)}</h2>
-                
                 <div className={"clock-controls"}>
                     <Button className={"start"} variant="contained" color="default" onClick={this.startClock}>Start</Button>
                     <Button className={"stop"} variant="contained" color="default" onClick={this.stopClock}>Stop</Button>

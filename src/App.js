@@ -324,7 +324,6 @@ class App extends Component {
       }
     }, () => {
       this.setCurrentClockCookie();
-      this.setAudioVolume();
     })
 
   }
