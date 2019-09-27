@@ -1,31 +1,56 @@
 .single-element-wrapper {
     display: inline-block;
+
     &:hover {
+
         .element-pop-up {
             display: block;
         }
     }
 }
+
 .time-element {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+
     .coffee-image,
     .tomato-image {
         width: 100%;
+        border-radius: 99em;
+        filter: drop-shadow(0 8px 8px rgba(0,0,0,.3));
+        transition: all .2s;
+
+        &:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 12px 12px rgba(0,0,0,.2));
+        }
+        
+        &:active,
+        &:focus {
+            outline: none;
+            transform: translateY(-1px);
+            filter: drop-shadow(0 8px 8px rgba(0,0,0,.3));
+        }
     }
 
+        
+
     &.break {
+
         .tomato-image {
             display: none;
         }
     }
+
     &.tomato {
+
         .coffee-image {
             display: none;
         }
     }
+
     .element-pop-up {
         display: block;
         display: none;
@@ -37,6 +62,7 @@
         padding: 1rem;
         z-index: 2;
         box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+
         &::after {
             display: block;
             content:"\A";
@@ -50,6 +76,7 @@
         }
 
         .log-info {
+
             p {
                 margin: 0 0 0.5rem;
             }
@@ -58,6 +85,7 @@
 }
 
 .day {
+
     .time-elements-container {
         display: flex;
         justify-content: flex-start;

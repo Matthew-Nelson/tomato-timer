@@ -55,7 +55,7 @@ export default class CommentSection extends Component {
                         value={this.state.comment}
                         onChange={this.udpateCommentState}
                         variant="filled"
-                        placeholder="How you spent your time?"
+                        placeholder="How you spent your time"
                         style={{marginBottom: '1rem', width: '100%'}}
                     />
                     <Button variant="outlined" className="submit" onClick={this.submitComment} style={{width: '100%'}}>Submit</Button>

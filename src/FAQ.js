@@ -66,7 +66,7 @@ export default class FAQ extends Component {
                                     <li><a href="http://tomatoi.st/" target="_blank" rel="noopener noreferrer">Tomatoist</a></li>
                                 </ol>
 
-                                <p>This application was built using the React Javascript framework and was done as a challenge to push myself to learn more about these technologies and to also provide myself with a useful tool for my future productivity. This application uses cookies to store the settings and Pomodoro data.</p>
+                                <p>This application was built using the React Javascript framework so I could gain a deeper understanding of these technologies and to also provide myself with a useful tool for my future productivity. This application uses cookies to store the settings and Pomodoro data.</p>
 
                                 <p>Why use this app?</p>
 

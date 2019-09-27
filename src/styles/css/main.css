@@ -165,7 +165,20 @@ body {
   position: relative; }
   .time-element .coffee-image,
   .time-element .tomato-image {
-    width: 100%; }
+    width: 100%;
+    border-radius: 99em;
+    filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3));
+    transition: all .2s; }
+    .time-element .coffee-image:hover,
+    .time-element .tomato-image:hover {
+      transform: translateY(-3px);
+      filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.2)); }
+    .time-element .coffee-image:active, .time-element .coffee-image:focus,
+    .time-element .tomato-image:active,
+    .time-element .tomato-image:focus {
+      outline: none;
+      transform: translateY(-1px);
+      filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3)); }
   .time-element.break .tomato-image {
     display: none; }
   .time-element.tomato .coffee-image {

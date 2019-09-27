@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tomato Tracker
 
-## Available Scripts
+The Pomodoro Technique is a simple yet effective method of time management that aims to improve work and study habits through structured "work" (or "pomodoro") and "break" segments. This technique was created by Francesco Cirillo and helps keep the user on task and focused during the "work" segments, while giving them adequate time for rest and recouperation during the "break" segments. This technique helps reduce the chances of burnout and can be an effective strategy towards increasing productivity. Learn more about the Pomodoro Technique on <a href="https://francescocirillo.com/pages/pomodoro-technique" target="_blank" rel="noopener noreferrer">Francesco Cirillo's website</a>.
 
-In the project directory, you can run:
+This application, the TomatoTracker, provides the user with a timer that will accurately track the user's time spent during a "pomodoro" or break and log their completed time segments. This gives the user a sense of accomplishment and a graphical representation of their hard work! The user can also log comments to each of their time segments to see how they spent their time. This will aid when reviewing the work completed but also give the user a better ability to estimate the time needed to complete certain tasks in the future.
 
-### `npm start`
+## The basics are:
+<ol>
+    <li>Start the "Pomodoro" timer and work for 25 minutes. Make an effort to avoid distractions during this time.</li>
+    <li>Take a 5 minute break! You've earned it. Get up, stretch, meditate, grab a cup of coffee or even browse social media.</li>
+    <li>Rinse and repeat until you have completed 4 Pomodoros.</li>
+    <li>After completing 4 Pomodoros, take a 10 minute break. This longer break ensures that you are giving yourself enough time to rest and digest the information from your work or study sessions.</li>
+    <li>Continue this cycle as needed!</li>
+</ol>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## This app was inspired by:
+<ol>
+    <li><a href="https://tomato-timer.com/" target="_blank" rel="noopener noreferrer">TomatoTimer</a></li>
+    <li><a href="http://tomatoi.st/" target="_blank" rel="noopener noreferrer">Tomatoist</a></li>
+</ol>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This application was built using the React Javascript framework so I could gain a deeper understanding of these technologies and to also provide myself with a useful tool for my future productivity. This application uses cookies to store the settings and Pomodoro data.
 
-### `npm test`
+## Why use this app?
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p>This application gives the user an easy to use Pomodoro Timer that also allows them to track their time spent working and create detailed logs of how they spent their time.</p>
 
-### `npm run build`
+## Features and settings include:
+<ol>
+    <li>Customize Pomodoro and Break times</li>
+    <li>Pick from a selection of alarm sounds</li>
+    <li>Adjust alarm volume</li>
+    <li>Toggle between showing only Pomodoros or showing Pomodoros and Breaks in the log</li>
+    <li>A "skip to the end of the timer" button. This is mainly used for demonstration purposes</li>
+</ol>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Find me on the following platforms:
+<ul className={'external-links'}>
+    <li><a href="https://www.linkedin.com/in/matthewbnelson/" target="_blank" rel="noopener noreferrer"><FaLinkedin/>My 
+    LinkedIn</a></li>
+    <!-- <li><a href="https://mattnelson.dev/" target="_blank" rel="noopener noreferrer"><FaLaptopCode/>My personal site</a></li> -->
+</ul>
