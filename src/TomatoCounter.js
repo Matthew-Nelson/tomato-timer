@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import CommentSection from './CommentSection.js';
+import Arrow from './Arrow.js';
 import Button from '@material-ui/core/Button';
 import tomatoImg from './assets/tomato.png';
 import coffeeImg from './assets/coffee.png';
 
 export default class TomatoCounter extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isInteractedWith: false,
+        };
+    }
+
+    removeArrow = () => {
+
+        console.log('remove arrow');
+
+        this.setState({
+            isInteractedWith: true,
+        })
+
+        
+    }
 
     editLogComment = (dayId, elementId, comment) => {
         this.props.editLogComment(dayId, elementId, comment);
@@ -23,13 +43,18 @@ export default class TomatoCounter extends Component {
 
             day.timeElements.forEach( (element) => {
 
+                var arrow;
+
+                if (!this.state.isInteractedWith && this.props.daysWithWork.length === 1 && this.props.daysWithWork[0].timeElements.length === 1) {
+                    arrow = <Arrow />
+                }
+
                 if ((!this.props.showBreaksInLog && element.isTomato) || this.props.showBreaksInLog) {
                     elementsArray.push(
                         <div className={`single-element-wrapper ${element.isTomato ? 'tomato' : 'break'} ${!element.isTomato && !this.props.showBreaksInLog ? 'hide-element' : 'show-element'}`} key={element.id}>
-                            
                             <div className={`time-element ${element.isTomato ? 'tomato' : 'break'}`}>
-                                <img src={tomatoImg} className={'tomato-image'} alt="Tomato Icon"/>
-                                <img src={coffeeImg} className={'coffee-image'} alt="Coffee Icon"/>
+                                <img src={tomatoImg} className={'tomato-image'} onMouseEnter={this.removeArrow} alt="Tomato Icon"/>
+                                <img src={coffeeImg} className={'coffee-image'} onMouseEnter={this.removeArrow} alt="Coffee Icon"/>
                                 <div className={"element-pop-up"}>
                                     <CommentSection comment={element.comment} editingComment={element.editingComment} editLogComment={this.editLogComment.bind(this, day.id, element.id)}/>
                                     <hr style={{marginTop: '15px'}}/>
@@ -41,9 +66,9 @@ export default class TomatoCounter extends Component {
                                         <p>Date Completed: {element.dateCompleted}</p>
                                     </div>
                                     <hr style={{margin: '12px 0'}}/>
-                                    {/* <hr/> */}
                                     <Button onClick={this.props.deleteElement.bind(this, day.id, element.id)} className="rm-button clear" variant="outlined" style={{width: '100%'}} >Delete Element</Button>
                                 </div>
+                                {arrow}
                             </div>
                         </div>
                     )

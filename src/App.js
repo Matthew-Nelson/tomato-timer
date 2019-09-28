@@ -95,7 +95,7 @@ class App extends Component {
 
   setDaysCookie = () => {
     const { cookies } = this.props;
-    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/tomato-tracker/', expires: this.getExpDate()});
+    cookies.set('daysWithWork', this.state.daysWithWork, { path: '/', expires: this.getExpDate()});
   }
 
   clearDaysCookie = () => {
@@ -150,7 +150,6 @@ class App extends Component {
     var formattedDateCompleted = `${monthFin}/${dayFin}/${yearFin}`;
     var formattedTimeCompleted = `${hoursFin}:${minutesFin} ${amOrPmFin}`;
 
-
     var newTimeElement = {
       isTomato: (timerType === 'pomodoro'),
       minutes: (secondsCompleted / 60),
@@ -161,6 +160,13 @@ class App extends Component {
       timeCompleted: formattedTimeCompleted,
       dateCompleted: formattedDateCompleted
     }
+
+    if (this.state.daysWithWork.length === 0) {
+      document.querySelector('.footer-container').scrollIntoView({ 
+        behavior: 'smooth',
+      });
+    }
+    
     return newTimeElement;
   }
 
@@ -260,12 +266,12 @@ class App extends Component {
 
   setCurrentClockCookie = () => {
     const { cookies } = this.props;
-    cookies.set('currentClockState', this.state.clock, { path: '/tomato-tracker/', expires: this.getExpDate()})
+    cookies.set('currentClockState', this.state.clock, { path: '/', expires: this.getExpDate()})
   }
 
   setSettingsCookie = () => {
     const { cookies } = this.props;
-    cookies.set('settings', this.state.settings, { path: '/tomato-tracker/', expires: this.getExpDate()});
+    cookies.set('settings', this.state.settings, { path: '/', expires: this.getExpDate()});
   }
 
   clearSettingsCookie = () => {
