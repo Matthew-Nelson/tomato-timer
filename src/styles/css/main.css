@@ -462,7 +462,8 @@ button:not(.stop):not(.start):not(.submit):not(.clear) {
 .arrow {
   position: absolute;
   animation-delay: .5s;
-  animation-duration: 1s; }
+  animation-duration: 1s;
+  transition: all .5s ease-out .5s; }
   .arrow svg {
     height: 1000%;
     width: 1000%;

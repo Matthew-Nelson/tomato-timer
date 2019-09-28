@@ -17,13 +17,22 @@ export default class TomatoCounter extends Component {
 
     removeArrow = () => {
 
-        console.log('remove arrow');
+        var arrow = document.getElementsByClassName('arrow')[0];
 
-        this.setState({
-            isInteractedWith: true,
-        })
+        if (arrow) {
 
-        
+            arrow.style.opacity = '0';
+            
+            var computedStyleRight = parseInt(window.getComputedStyle(arrow).right.replace('px', ''));
+            arrow.style.right = `${computedStyleRight - 10}px`;
+        }
+
+        setTimeout( () => {
+            this.setState({
+                isInteractedWith: true,
+            });
+        }, 1000);
+
     }
 
     editLogComment = (dayId, elementId, comment) => {
