@@ -27,17 +27,26 @@
         justify-content: space-evenly;
         .show-breaks,
         .show-skip-button {
-            width: 50%;
-            h3 {
-                text-align: center;
-                display: block;
+            
+            @media only screen and (min-width: 532px) {
+                width: 50%;
+                h3 {
+                    text-align: center;
+                    display: block;
+                }        
+                .MuiFormGroup-root {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                }
             }
-            .MuiFormGroup-root {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
+
+            @media only screen and (max-width: 531px) {
+                width: 100%;
             }
+            
         }
+
         @media only screen and (max-width: 531px) {
             flex-direction: column;
             align-items: center;

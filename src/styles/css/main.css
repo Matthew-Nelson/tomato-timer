@@ -351,18 +351,23 @@ body {
 #settings .breaks-skip-wrapper {
   display: flex;
   justify-content: space-evenly; }
-  #settings .breaks-skip-wrapper .show-breaks,
-  #settings .breaks-skip-wrapper .show-skip-button {
-    width: 50%; }
-    #settings .breaks-skip-wrapper .show-breaks h3,
-    #settings .breaks-skip-wrapper .show-skip-button h3 {
-      text-align: center;
-      display: block; }
-    #settings .breaks-skip-wrapper .show-breaks .MuiFormGroup-root,
-    #settings .breaks-skip-wrapper .show-skip-button .MuiFormGroup-root {
-      display: flex;
-      flex-direction: row;
-      justify-content: center; }
+  @media only screen and (min-width: 532px) {
+    #settings .breaks-skip-wrapper .show-breaks,
+    #settings .breaks-skip-wrapper .show-skip-button {
+      width: 50%; }
+      #settings .breaks-skip-wrapper .show-breaks h3,
+      #settings .breaks-skip-wrapper .show-skip-button h3 {
+        text-align: center;
+        display: block; }
+      #settings .breaks-skip-wrapper .show-breaks .MuiFormGroup-root,
+      #settings .breaks-skip-wrapper .show-skip-button .MuiFormGroup-root {
+        display: flex;
+        flex-direction: row;
+        justify-content: center; } }
+  @media only screen and (max-width: 531px) {
+    #settings .breaks-skip-wrapper .show-breaks,
+    #settings .breaks-skip-wrapper .show-skip-button {
+      width: 100%; } }
   @media only screen and (max-width: 531px) {
     #settings .breaks-skip-wrapper {
       flex-direction: column;
