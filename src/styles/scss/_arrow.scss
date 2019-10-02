@@ -19,8 +19,8 @@
     transition: all .5s ease-out .5s;
 
     svg {
-        height: 1000%;
-        width: 1000%;
+        height: 10rem;
+        width: 10rem;
         fill: #1a9703;
     }
 
@@ -28,8 +28,8 @@
 
         animation-name: bounce30;
 
-        right: -2rem;
-        top: -4rem;
+        right: -10rem;
+        top: -7rem;
         transform: rotate(-30deg);
     }
     
@@ -37,13 +37,13 @@
 
         animation-name: bounce45;
 
-        right: -2rem;
-        top: -5rem;
+        right: -9rem;
+        top: -8rem;
         transform: rotate(-45deg);
     }
 
     @media only screen and (max-width: 531px) {
-        right: -1rem;
-        top: -4rem;
+        right: -9rem;
+        top: -7rem;
     }
 }

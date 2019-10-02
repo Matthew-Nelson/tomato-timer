@@ -465,22 +465,22 @@ button:not(.stop):not(.start):not(.submit):not(.clear) {
   animation-duration: 1s;
   transition: all .5s ease-out .5s; }
   .arrow svg {
-    height: 1000%;
-    width: 1000%;
+    height: 10rem;
+    width: 10rem;
     fill: #1a9703; }
   @media only screen and (min-width: 768px) {
     .arrow {
       animation-name: bounce30;
-      right: -2rem;
-      top: -4rem;
+      right: -10rem;
+      top: -7rem;
       transform: rotate(-30deg); } }
   @media only screen and (max-width: 768px) {
     .arrow {
       animation-name: bounce45;
-      right: -2rem;
-      top: -5rem;
+      right: -9rem;
+      top: -8rem;
       transform: rotate(-45deg); } }
   @media only screen and (max-width: 531px) {
     .arrow {
-      right: -1rem;
-      top: -4rem; } }
+      right: -9rem;
+      top: -7rem; } }
