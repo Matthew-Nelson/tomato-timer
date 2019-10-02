@@ -51,7 +51,7 @@ export default class FAQ extends Component {
 
                                 <p>This application, the TomatoTracker, provides the user with a timer that will accurately track the user's time spent during a "pomodoro" or break and log their completed time segments. This gives the user a sense of accomplishment and a graphical representation of their hard work! The user can also log comments to each of their time segments to see how they spent their time. This will aid when reviewing the work completed but also give the user a better ability to estimate the time needed to complete certain tasks in the future.</p>
 
-                                <p>The basics are:</p>
+                                <h3>The basics:</h3>
                                 <ol>
                                     <li>Start the "Pomodoro" timer and work for 25 minutes. Make an effort to avoid distractions during this time.</li>
                                     <li>Take a 5 minute break! You've earned it. Get up, stretch, meditate, grab a cup of coffee or even browse social media.</li>
@@ -60,7 +60,7 @@ export default class FAQ extends Component {
                                     <li>Continue this cycle as needed!</li>
                                 </ol>
 
-                                <p>This app was inspired by:</p>
+                                <h3>This app was inspired by:</h3>
                                 <ol>
                                     <li><a href="https://tomato-timer.com/" target="_blank" rel="noopener noreferrer">TomatoTimer</a></li>
                                     <li><a href="http://tomatoi.st/" target="_blank" rel="noopener noreferrer">Tomatoist</a></li>
@@ -68,11 +68,11 @@ export default class FAQ extends Component {
 
                                 <p>This application was built using the React Javascript framework so I could gain a deeper understanding of these technologies and to also provide myself with a useful tool for my future productivity. This application uses cookies to store the settings and Pomodoro data.</p>
 
-                                <p>Why use this app?</p>
+                                <h3>Why use this app?</h3>
 
                                 <p>This application gives the user an easy to use Pomodoro Timer that also allows them to track their time spent working and create detailed logs of how they spent their time.</p>
                                 
-                                <p>Features and settings include:</p>
+                                <h3>Features and settings include:</h3>
                                 <ol>
                                     <li>Customize Pomodoro and Break times</li>
                                     <li>Pick from a selection of alarm sounds</li>
@@ -81,7 +81,7 @@ export default class FAQ extends Component {
                                     <li>A "skip to the end of the timer" button. This is mainly used for demonstration purposes</li>
                                 </ol>
 
-                                <p>Find me on the following platforms:</p>
+                                <h3>Find me on the following platforms:</h3>
                                 <ul className={'external-links'}>
                                     <li><a href="https://github.com/Matthew-Nelson" target="_blank" rel="noopener noreferrer"><FaGithub/>My Github</a></li>
                                     <li><a href="https://www.linkedin.com/in/matthewbnelson/" target="_blank" rel="noopener noreferrer"><FaLinkedin/>My 

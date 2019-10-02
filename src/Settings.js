@@ -123,7 +123,7 @@ export default class Settings extends Component {
                                     <form onSubmit={this.onSubmit} id="settings" >
                                         <h2>Settings</h2>
                                         <div className={"setting custom-times"}>
-                                            <p>Custom Timer Times</p>
+                                            <h3>Custom Timer Times</h3>
                                             <div className={"times-wrapper"}>
                                                 <TextField
                                                     name="pomodoroTimeLengthMinutes"
@@ -157,7 +157,7 @@ export default class Settings extends Component {
                                             
                                         </div> */}
                                         <div className={"setting sound-settings"}>
-                                            <p>Sound Settings</p>
+                                            <h3>Sound Settings</h3>
                                             {/* <div> */}
                                             <div className="inner-wrapper">
                                                 <TextField
@@ -190,7 +190,7 @@ export default class Settings extends Component {
                                         <hr className="add-margin"/>
                                         <div className="breaks-skip-wrapper">
                                             <div className={"setting show-breaks"}>
-                                                <p>Show breaks in log</p>
+                                                <h3>Show breaks in log</h3>
                                                 <RadioGroup>
                                                     <FormControlLabel
                                                         label="Yes"
@@ -216,7 +216,7 @@ export default class Settings extends Component {
                                             </div>
                                             <hr/>
                                             <div className="setting show-skip-button">
-                                                <p>Show Skip Button<br/>(For Demonstration Purposes)</p>
+                                                <h3>Show Skip Button<br/>(For Demonstration Purposes)</h3>
                                                 <RadioGroup>
                                                     <FormControlLabel
                                                         label="Yes"

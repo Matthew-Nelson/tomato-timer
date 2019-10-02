@@ -28,7 +28,7 @@
         .show-breaks,
         .show-skip-button {
             width: 50%;
-            p {
+            h3 {
                 text-align: center;
                 display: block;
             }
@@ -48,7 +48,7 @@
     }
 
     .setting {
-        p {
+        h3 {
             &:first-of-type {
                 margin-top: 0;
             }

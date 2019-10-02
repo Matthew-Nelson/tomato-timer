@@ -354,8 +354,8 @@ body {
   #settings .breaks-skip-wrapper .show-breaks,
   #settings .breaks-skip-wrapper .show-skip-button {
     width: 50%; }
-    #settings .breaks-skip-wrapper .show-breaks p,
-    #settings .breaks-skip-wrapper .show-skip-button p {
+    #settings .breaks-skip-wrapper .show-breaks h3,
+    #settings .breaks-skip-wrapper .show-skip-button h3 {
       text-align: center;
       display: block; }
     #settings .breaks-skip-wrapper .show-breaks .MuiFormGroup-root,
@@ -370,7 +370,7 @@ body {
       #settings .breaks-skip-wrapper hr {
         width: 100%; } }
 
-#settings .setting p:first-of-type {
+#settings .setting h3:first-of-type {
   margin-top: 0; }
 
 @media only screen and (min-width: 532px) {
