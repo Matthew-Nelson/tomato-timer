@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CommentSection from './CommentSection.js';
-import Arrow from './Arrow.js';
+import CommentSection from './CommentSection';
+import Arrow from './Arrow';
 import Button from '@material-ui/core/Button';
 import tomatoImg from './assets/tomato.png';
 import coffeeImg from './assets/coffee.png';

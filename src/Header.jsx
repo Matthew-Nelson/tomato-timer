@@ -1,6 +1,6 @@
 import React from 'react';
-import FAQ from './FAQ.js';
-import Settings from './Settings.js';
+import FAQ from './FAQ';
+import Settings from './Settings';
 import Container from '@material-ui/core/Container';
 
 export default function Header(props) {

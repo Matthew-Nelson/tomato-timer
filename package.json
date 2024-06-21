@@ -1,40 +1,33 @@
 {
-  "name": "tomato-tracker",
-  "version": "0.1.0",
+  "name": "vite-project",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.4.0",
-    "@material-ui/icons": "^4.2.1",
-    "gh-pages": "^2.1.1",
-    "react": "^16.9.0",
-    "react-cookie": "^4.0.1",
-    "react-dom": "^16.9.0",
-    "react-icons": "^3.7.0",
-    "react-scripts": "3.1.1",
-    "uuid": "^3.3.3"
-  },
-  "homepage": "https://matthew-nelson.github.io/tomato-tracker",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "sass": "node-sass -w ./src/styles/scss/ -o ./src/styles/css/;",
-    "deploy": "npm run build && gh-pages -d build"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "react": "^18.3.1",
+    "react-cookie": "^7.1.4",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1",
+    "uuid": "^10.0.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "vite": "^5.3.1"
   }
 }

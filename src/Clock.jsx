@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ClockChanger from './ClockChanger.js';
+import ClockChanger from './ClockChanger';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
